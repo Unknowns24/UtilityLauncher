@@ -1,0 +1,12 @@
+D:\Windows\.Unknowns\!Proyectos\UtilityLauncher\obj\Release\UtilityLauncher.csprojAssemblyReference.cache
+D:\Windows\.Unknowns\!Proyectos\UtilityLauncher\obj\Release\FileProtecter.MainForm.resources
+D:\Windows\.Unknowns\!Proyectos\UtilityLauncher\obj\Release\UtilityLauncher.Properties.Resources.resources
+D:\Windows\.Unknowns\!Proyectos\UtilityLauncher\obj\Release\UtilityLauncher.csproj.GenerateResource.cache
+D:\Windows\.Unknowns\!Proyectos\UtilityLauncher\obj\Release\UtilityLauncher.csproj.CoreCompileInputs.cache
+D:\Windows\.Unknowns\!Proyectos\UtilityLauncher\bin\Release\UtilityLauncher.exe.config
+D:\Windows\.Unknowns\!Proyectos\UtilityLauncher\bin\Release\UtilityLauncher.exe
+D:\Windows\.Unknowns\!Proyectos\UtilityLauncher\bin\Release\UtilityLauncher.pdb
+D:\Windows\.Unknowns\!Proyectos\UtilityLauncher\bin\Release\MaterialSkin.dll
+D:\Windows\.Unknowns\!Proyectos\UtilityLauncher\obj\Release\UtilityLauncher.csproj.CopyComplete
+D:\Windows\.Unknowns\!Proyectos\UtilityLauncher\obj\Release\UtilityLauncher.exe
+D:\Windows\.Unknowns\!Proyectos\UtilityLauncher\obj\Release\UtilityLauncher.pdb

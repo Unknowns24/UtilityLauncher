@@ -1,0 +1,13 @@
+D:\Windows\.Unknowns\!Proyectos\FiveM-SecureEventsInstaller\obj\Debug\FSE.csprojAssemblyReference.cache
+D:\Windows\.Unknowns\!Proyectos\FiveM-SecureEventsInstaller\obj\Debug\FileProtecter.Logging.resources
+D:\Windows\.Unknowns\!Proyectos\FiveM-SecureEventsInstaller\obj\Debug\FSE.csproj.GenerateResource.cache
+D:\Windows\.Unknowns\!Proyectos\FiveM-SecureEventsInstaller\obj\Debug\FSE.csproj.CoreCompileInputs.cache
+D:\Windows\.Unknowns\!Proyectos\FiveM-SecureEventsInstaller\bin\Debug\FiveM Secure Events.exe.config
+D:\Windows\.Unknowns\!Proyectos\FiveM-SecureEventsInstaller\bin\Debug\FiveM Secure Events.exe
+D:\Windows\.Unknowns\!Proyectos\FiveM-SecureEventsInstaller\bin\Debug\FiveM Secure Events.pdb
+D:\Windows\.Unknowns\!Proyectos\FiveM-SecureEventsInstaller\obj\Debug\FSE.Properties.Resources.resources
+D:\Windows\.Unknowns\!Proyectos\FiveM-SecureEventsInstaller\obj\Debug\FiveM Secure Events.exe
+D:\Windows\.Unknowns\!Proyectos\FiveM-SecureEventsInstaller\obj\Debug\FiveM Secure Events.pdb
+D:\Windows\.Unknowns\!Proyectos\FiveM-SecureEventsInstaller\bin\Debug\MaterialSkin.dll
+D:\Windows\.Unknowns\!Proyectos\FiveM-SecureEventsInstaller\obj\Debug\FSE.csproj.CopyComplete
+D:\Windows\.Unknowns\!Proyectos\FiveM-SecureEventsInstaller\obj\Debug\FileProtecter.MainForm.resources
