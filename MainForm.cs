@@ -436,7 +436,7 @@ namespace UtilityLauncher
             return mac;
         }
 
-        private void SaveSettings()
+        private void SaveSettings(bool ExistingConfig)
         {
             string mac = GetMacAdress();
 
@@ -446,14 +446,30 @@ namespace UtilityLauncher
                 return;
             }
 
-            var keyValues = new Dictionary<string, string> // Se crea un diccionario donde se pondra una structura Key Value para ser codificada a Json
+            Dictionary<string, string> keyValues = null;
+
+            if (ExistingConfig)
             {
-                { "userEncryptPassword", MD5Hash(txt_filesPass.Text) },
-                { "HeidiPath",  txt_heidiPath.Text},
-                { "PuttyPath",  txt_puttyPath.Text},
-                { "WinScpPath",  txt_winscpPath.Text},
-                { "FilezillaPath",  txt_filezillaPath.Text}
-            };
+                keyValues = new Dictionary<string, string> // Se crea un diccionario donde se pondra una structura Key Value para ser codificada a Json
+                {
+                    { "userEncryptPassword", txt_filesPass.Text},
+                    { "HeidiPath",  txt_heidiPath.Text},
+                    { "PuttyPath",  txt_puttyPath.Text},
+                    { "WinScpPath",  txt_winscpPath.Text},
+                    { "FilezillaPath",  txt_filezillaPath.Text}
+                };
+            }
+            else
+            {
+                keyValues = new Dictionary<string, string> // Se crea un diccionario donde se pondra una structura Key Value para ser codificada a Json
+                {
+                    { "userEncryptPassword", MD5Hash(txt_filesPass.Text)},
+                    { "HeidiPath",  txt_heidiPath.Text},
+                    { "PuttyPath",  txt_puttyPath.Text},
+                    { "WinScpPath",  txt_winscpPath.Text},
+                    { "FilezillaPath",  txt_filezillaPath.Text}
+                };
+            }
 
             string json = DictionaryToJson(keyValues);
 
@@ -503,97 +519,126 @@ namespace UtilityLauncher
 
         private void btn_filezillaSearch_Click(object sender, EventArgs e)
         {
-            ofd_searchApps.Title = "Open Filezilla executable";
-            ofd_searchApps.FileName = "filezilla.exe";
-            ofd_searchApps.ShowDialog();
-            string path = ofd_searchApps.FileName;
-
-            if (Path.GetFileName(path) == "filezilla.exe")
+            try
             {
-                if (File.ReadAllText(path).Contains("MZ"))
+                ofd_searchApps.Title = "Open Filezilla executable";
+                ofd_searchApps.FileName = "filezilla.exe";
+                ofd_searchApps.ShowDialog();
+                string path = ofd_searchApps.FileName;
+
+                if (Path.GetFileName(path) == "filezilla.exe")
                 {
-                    txt_filezillaPath.Text = path;
+                    if (File.ReadAllText(path).Contains("MZ"))
+                    {
+                        txt_filezillaPath.Text = path;
+                    }
+                    else
+                    {
+                        MessageBox.Show("Please, Select a valid filezilla executable.", "Invalid Program", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
                 }
-                else
+                else if (path != "")
                 {
                     MessageBox.Show("Please, Select a valid filezilla executable.", "Invalid Program", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
             }
-            else
+            catch
             {
-                MessageBox.Show("Please, Select a valid filezilla executable.", "Invalid Program", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                //
             }
         }
 
         private void btn_winscpSearch_Click(object sender, EventArgs e)
         {
-            ofd_searchApps.Title = "Open WinSCP executable";
-            ofd_searchApps.FileName = "WinSCP.exe";
-            ofd_searchApps.ShowDialog();
-            string path = ofd_searchApps.FileName;
-
-            if (Path.GetFileName(path) == "WinSCP.exe")
+            try
             {
-                if (File.ReadAllText(path).Contains("MZ"))
+                ofd_searchApps.Title = "Open WinSCP executable";
+                ofd_searchApps.FileName = "WinSCP.exe";
+                ofd_searchApps.ShowDialog();
+                string path = ofd_searchApps.FileName;
+
+                if (Path.GetFileName(path) == "WinSCP.exe")
                 {
-                    txt_winscpPath.Text = path;
+                    if (File.ReadAllText(path).Contains("MZ"))
+                    {
+                        txt_winscpPath.Text = path;
+                    }
+                    else
+                    {
+                        MessageBox.Show("Please, Select a valid WinSCP executable.", "Invalid Program", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
                 }
-                else
+                else if (path != "")
                 {
                     MessageBox.Show("Please, Select a valid WinSCP executable.", "Invalid Program", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
             }
-            else
+            catch
             {
-                MessageBox.Show("Please, Select a valid WinSCP executable.", "Invalid Program", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                //
             }
         }
 
         private void btn_puttySearch_Click(object sender, EventArgs e)
         {
-            ofd_searchApps.Title = "Open Putty executable";
-            ofd_searchApps.FileName = "putty.exe";
-            ofd_searchApps.ShowDialog();
-            string path = ofd_searchApps.FileName;
-
-            if (Path.GetFileName(path) == "putty.exe")
+            try
             {
-                if (File.ReadAllText(path).Contains("MZ"))
+                ofd_searchApps.Title = "Open Putty executable";
+                ofd_searchApps.FileName = "putty.exe";
+                ofd_searchApps.ShowDialog();
+                string path = ofd_searchApps.FileName;
+
+                if (Path.GetFileName(path) == "putty.exe")
                 {
-                    txt_puttyPath.Text = path;
+                    if (File.ReadAllText(path).Contains("MZ"))
+                    {
+                        txt_puttyPath.Text = path;
+                    }
+                    else
+                    {
+                        MessageBox.Show("Please, Select a valid Putty executable.", "Invalid Program", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
                 }
-                else
+                else if (path != "")
                 {
                     MessageBox.Show("Please, Select a valid Putty executable.", "Invalid Program", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
             }
-            else
+            catch
             {
-                MessageBox.Show("Please, Select a valid Putty executable.", "Invalid Program", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                //
             }
+
         }
 
         private void btn_heidiSearch_Click(object sender, EventArgs e)
         {
-            ofd_searchApps.Title = "Open HeidiSQL executable";
-            ofd_searchApps.FileName = "heidisql.exe";
-            ofd_searchApps.ShowDialog();
-            string path = ofd_searchApps.FileName;
-
-            if (Path.GetFileName(path) == "heidisql.exe")
+            try
             {
-                if (File.ReadAllText(path).Contains("MZ"))
+                ofd_searchApps.Title = "Open HeidiSQL executable";
+                ofd_searchApps.FileName = "heidisql.exe";
+                ofd_searchApps.ShowDialog();
+                string path = ofd_searchApps.FileName;
+
+                if (Path.GetFileName(path) == "heidisql.exe")
                 {
-                    txt_heidiPath.Text = path;
+                    if (File.ReadAllText(path).Contains("MZ"))
+                    {
+                        txt_heidiPath.Text = path;
+                    }
+                    else
+                    {
+                        MessageBox.Show("Please, Select a valid HeidiSQL executable.", "Invalid Program", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
                 }
-                else
+                else if (path != "")
                 {
                     MessageBox.Show("Please, Select a valid HeidiSQL executable.", "Invalid Program", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
             }
-            else
+            catch
             {
-                MessageBox.Show("Please, Select a valid HeidiSQL executable.", "Invalid Program", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                //
             }
         }
 
@@ -641,12 +686,12 @@ namespace UtilityLauncher
 
                 if (answer == DialogResult.Yes)
                 {
-                    SaveSettings();
+                    SaveSettings(true);
                 }
             }
             else
             {
-                SaveSettings();
+                SaveSettings(false);
             }
 
             MessageBox.Show("Setting saved successfully", "Settings Saved!", MessageBoxButtons.OK, MessageBoxIcon.Information);
