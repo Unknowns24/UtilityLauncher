@@ -14,6 +14,7 @@ namespace UtilityLauncher
     public partial class MainForm : MaterialForm
     {
         Random rnd = new Random();
+        Account thisAccount = null;
         MaterialSkinManager materialSkinManager;
 
         private string userEncryptPassword = "";
@@ -22,6 +23,8 @@ namespace UtilityLauncher
         private string PuttyPath = "";
         private string WinScpPath = "";
         private string FilezillaPath = "";
+
+        private bool showPassword = false;
 
         private List<Account> accounts = new List<Account>();
 
@@ -37,6 +40,16 @@ namespace UtilityLauncher
             rb_heidi.Enabled = false;
             rb_winscp.Enabled = false;
             rb_filezilla.Enabled = false;
+
+            txt_port.Visible = false;
+            comb_accounts.Width = 602;
+
+
+            txt_pass.Password = true;
+            chk_editing.Visible = false;
+
+            comb_accounts.Items.Add("Select an account");
+            comb_accounts.SelectedItem = "Select an account";
 
             loadConfig();
             loadAccounts();
@@ -133,32 +146,99 @@ namespace UtilityLauncher
         // Encryptation System //
         /////////////////////////
 
-        private Dictionary<string, string> AccountEncrypt(string aname, string apass, string auser)
+        private void AccountEncrypt(string AccountHost, string AccountName, string AccountUser, string AccountPassword, bool ssh, bool ftp, bool sftp, bool sql)
         {
-            var keyValues = new Dictionary<string, string> // Se crea un diccionario donde se pondra una structura Key Value para ser codificada a Json
+            try
             {
-                { "name", aname },
-                { "username", auser },
-                { "password", apass }
-            };
+                string basePath = AppDomain.CurrentDomain.BaseDirectory + "/data";
 
-            string json = DictionaryToJson(keyValues);
+                AccountName = AccountName + $" ({AccountUser}@{AccountHost})";
 
-            string password = MD5Hash(userEncryptPassword.Substring(0, 16) + userEncryptPassword.ToString() + userEncryptPassword.Substring(16));
+                for (int i = 0; i < 9999; i++)
+                {
+                    if (File.Exists($"{basePath}/{AccountName}.ulfs"))
+                    {
+                        AccountName = $"[0{i}] " + AccountName;
+                    }
+                    else
+                    {
+                        break;
+                    }
+                }
 
-            // Create sha256 hash
-            SHA256 mySHA256 = SHA256Managed.Create();
-            byte[] key = mySHA256.ComputeHash(Encoding.ASCII.GetBytes(MD5Hash(password)));
+                var keyValues = new Dictionary<string, string> // Se crea un diccionario donde se pondra una structura Key Value para ser codificada a Json
+                {
+                    {"AccountHost", AccountHost},
+                    {"AccountName", AccountName},
+                    {"AccountUser", AccountUser},
+                    {"AccountPassword", AccountPassword},
+                    {"ssh", ssh.ToString()},
+                    {"ftp", ftp.ToString()},
+                    {"sftp", sftp.ToString()},
+                    {"sql", sql.ToString()}
+                };
 
-            // Create secret IV
-            byte[] iv = new byte[16] { 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0 };
+                string json = DictionaryToJson(keyValues);
 
-            string encrypted = Aes_Encrypt(json, key, iv);
+                string password = MD5Hash(userEncryptPassword.Substring(0, 16) + userEncryptPassword.ToString() + userEncryptPassword.Substring(16));
 
-            keyValues.Add("encryptedData", encrypted);
+                // Create sha256 hash
+                SHA256 mySHA256 = SHA256Managed.Create();
+                byte[] key = mySHA256.ComputeHash(Encoding.ASCII.GetBytes(MD5Hash(password)));
 
-            return keyValues;
+                // Create secret IV
+                byte[] iv = new byte[16] { 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0 };
+
+                string encrypted = Aes_Encrypt(json, key, iv);
+
+                if (!Directory.Exists(basePath))
+                {
+                    Directory.CreateDirectory(basePath);
+                }
+
+                File.WriteAllText(Path.GetFullPath($"{basePath}/{AccountName}.ulfs"), encrypted);
+
+                Account tempData = new Account
+                {
+                    index = (accounts.Count + 1).ToString(),
+                    path = $"{basePath}/{AccountName}.ulfs",
+
+                    name = keyValues["AccountName"],
+                    host = keyValues["AccountHost"],
+                    username = keyValues["AccountUser"],
+                    password = keyValues["AccountPassword"],
+
+                    putty = ssh,
+                    heidi = sql,
+                    winscp = sftp,
+                    filezilla = ftp
+                };
+
+                accounts.Add(tempData);
+                comb_accounts.Items.Add(AccountName);
+
+                MessageBox.Show("Account Saved", "Information saved!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                chk_ssh.Checked = false;
+                chk_ftp.Checked = false;
+                chk_sftp.Checked = false;
+                chk_mysql.Checked = false;
+
+                showPassword = false;
+                txt_pass.Password = true;
+
+                txt_name.Text = "";
+                txt_user.Text = "";
+                txt_pass.Text = "";
+                txt_host.Text = "";
+            }
+            catch(Exception err)
+            {
+                MessageBox.Show("An error occurred while saving account data\n\nError:"+err.Message, "Save error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
         }
+        
 
         private void AccountDecrypt(string AES, string filePath)
         {
@@ -175,11 +255,26 @@ namespace UtilityLauncher
 
                 string decrypt = Aes_Decrypt(AES, key, iv);
 
-                Dictionary<string, string> AccountInfo = jsonToDictionary(decrypt);
+                Dictionary<string, string> keyValues = jsonToDictionary(decrypt);
 
-                Account tempData = new Account { index = (accounts.Count + 1).ToString(), name = AccountInfo["name"], username = AccountInfo["username"], password = AccountInfo["password"], path = filePath};
+                Account tempData = new Account
+                {
+                    index = (accounts.Count + 1).ToString(),
+                    path = filePath,
+
+                    name = keyValues["AccountName"],
+                    host = keyValues["AccountHost"],
+                    username = keyValues["AccountUser"],
+                    password = keyValues["AccountPassword"],
+
+                    putty = bool.Parse(keyValues["ssh"]),
+                    heidi = bool.Parse(keyValues["sql"]),
+                    winscp = bool.Parse(keyValues["sftp"]),
+                    filezilla = bool.Parse(keyValues["ftp"])
+                };
 
                 accounts.Add(tempData);
+                comb_accounts.Items.Add(keyValues["AccountName"]);
             }
             catch
             {
@@ -553,9 +648,175 @@ namespace UtilityLauncher
             loadConfig();
         }
 
+        ////////////////////
+        // Debug Function //
+        ////////////////////
+
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             Environment.Exit(-1);
+        }
+
+        ///////////////////////////////
+        // Account Creator Functions //
+        ///////////////////////////////
+
+        private void btn_swithPass_Click(object sender, EventArgs e)
+        {
+            txt_pass.Focus();
+
+            if (showPassword == true)
+            {
+                txt_pass.Focus();
+                txt_pass.Password = true;
+            }
+            else
+            {
+                txt_pass.Focus();
+                txt_pass.Password = false;
+            }
+            
+            showPassword = !showPassword;
+        }
+
+        private void btn_clear_Click(object sender, EventArgs e)
+        {
+            rb_putty.Checked = false;
+            rb_heidi.Checked = false;
+            rb_winscp.Checked = false;
+            rb_filezilla.Checked = false;
+
+            comb_accounts.SelectedItem = "Select an account";
+
+            chk_editing.Checked = false;
+
+            chk_ssh.Checked = false;
+            chk_ftp.Checked = false;
+            chk_sftp.Checked = false;
+            chk_mysql.Checked = false;
+
+            showPassword = false;
+            txt_pass.Password = true;
+
+            txt_name.Text = "";
+            txt_user.Text = "";
+            txt_pass.Text = "";
+            txt_host.Text = "";
+        }
+
+        private void btn_add_update_Click(object sender, EventArgs e)
+        {
+            if (txt_host.Text.Replace(" ", "") == "" || txt_name.Text.Replace(" ", "") == "" || txt_user.Text.Replace(" ", "") == "" || txt_pass.Text.Replace(" ", "") == "")
+            {
+                MessageBox.Show("There are empty fields, Please complete all fields", "Empty fields", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            if (chk_editing.Checked == true)
+            {
+
+            }
+            else
+            {
+                AccountEncrypt(txt_host.Text, txt_name.Text, txt_user.Text, txt_pass.Text, chk_ssh.Checked, chk_ftp.Checked, chk_sftp.Checked, chk_mysql.Checked);
+            }
+        }
+
+        private void comb_accounts_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            rb_putty.Checked = false;
+            rb_heidi.Checked = false;
+            rb_winscp.Checked = false;
+            rb_filezilla.Checked = false;
+
+            if (comb_accounts.SelectedItem.ToString() == "Select an account")
+            {
+                txt_port.Visible = false;
+                comb_accounts.Width = 602;
+
+                rb_putty.Enabled = false;
+                rb_heidi.Enabled = false;
+                rb_winscp.Enabled = false;
+                rb_filezilla.Enabled = false;
+
+                btn_open.Enabled = false;
+                btn_edit.Enabled = false;
+                btn_delete.Enabled = false;
+
+                return;
+            }
+
+            btn_open.Enabled = true;
+            btn_edit.Enabled = true;
+            btn_delete.Enabled = true;
+
+            txt_port.Visible = true;
+            comb_accounts.Width = 505;
+
+            bool finded = false;
+
+            foreach (var account in accounts)
+            {
+                if (account.name == comb_accounts.SelectedItem.ToString())
+                {
+                    finded = true;
+                    thisAccount = account;
+                    break;
+                }
+            }
+
+            if (finded && thisAccount != null)
+            {
+                rb_putty.Enabled = thisAccount.putty;
+                rb_heidi.Enabled = thisAccount.heidi;
+                rb_winscp.Enabled = thisAccount.winscp;
+                rb_filezilla.Enabled = thisAccount.filezilla;
+            }
+        }
+
+        ///////////////////
+        // Radio Buttons //
+        ///////////////////
+
+        private void rb_putty_CheckedChanged(object sender, EventArgs e)
+        {
+            if (rb_putty.Checked == true)
+            {
+                txt_port.Text = "22";
+            }
+        }
+
+        private void rb_filezilla_CheckedChanged(object sender, EventArgs e)
+        {
+            if (rb_filezilla.Checked == true)
+            {
+                txt_port.Text = "21";
+            }
+        }
+
+        private void rb_winscp_CheckedChanged(object sender, EventArgs e)
+        {
+            if (rb_winscp.Checked == true)
+            {
+                txt_port.Text = "22";
+            }
+        }
+
+        private void rb_heidi_CheckedChanged(object sender, EventArgs e)
+        {
+            if (rb_heidi.Checked == true)
+            {
+                txt_port.Text = "3306";
+            }
+        }
+
+        /////////////////////////////
+        // Account Creator Manager //
+        /////////////////////////////
+
+        private void btn_open_Click(object sender, EventArgs e)
+        {
+            // https://stackoverflow.com/questions/26772059/sending-host-name-login-id-password-dynamically-to-putty-using-c-sharp
         }
     }
 
@@ -572,10 +833,10 @@ namespace UtilityLauncher
 
         // Account Info
         public string name { get; set; }
+        public string host { get; set; }
         public string username { get; set; }
         public string password { get; set; }
-        public string port { get; set; }
-        
+
         // Apps
         public bool putty { get; set; }
         public bool heidi { get; set; }
