@@ -3,11 +3,13 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using MaterialSkin;
+using System.Threading;
 using System.Windows.Forms;
 using MaterialSkin.Controls;
 using System.Collections.Generic;
 using System.Security.Cryptography;
 using System.Net.NetworkInformation;
+using System.Diagnostics;
 
 namespace UtilityLauncher
 {
@@ -743,10 +745,12 @@ namespace UtilityLauncher
                 btn_edit.Enabled = false;
                 btn_delete.Enabled = false;
 
+                thisAccount = null;
+
                 return;
             }
 
-            btn_open.Enabled = true;
+            btn_open.Enabled = false;
             btn_edit.Enabled = true;
             btn_delete.Enabled = true;
 
@@ -782,6 +786,7 @@ namespace UtilityLauncher
         {
             if (rb_putty.Checked == true)
             {
+                btn_open.Enabled = true;
                 txt_port.Text = "22";
             }
         }
@@ -790,6 +795,7 @@ namespace UtilityLauncher
         {
             if (rb_filezilla.Checked == true)
             {
+                btn_open.Enabled = true;
                 txt_port.Text = "21";
             }
         }
@@ -798,6 +804,7 @@ namespace UtilityLauncher
         {
             if (rb_winscp.Checked == true)
             {
+                btn_open.Enabled = true;
                 txt_port.Text = "22";
             }
         }
@@ -806,6 +813,7 @@ namespace UtilityLauncher
         {
             if (rb_heidi.Checked == true)
             {
+                btn_open.Enabled = true;
                 txt_port.Text = "3306";
             }
         }
@@ -816,7 +824,59 @@ namespace UtilityLauncher
 
         private void btn_open_Click(object sender, EventArgs e)
         {
-            // https://stackoverflow.com/questions/26772059/sending-host-name-login-id-password-dynamically-to-putty-using-c-sharp
+            if (comb_accounts.SelectedItem.ToString() == "Select an account")
+            {
+                return;
+            }
+
+            if (txt_port.Text.Replace(" ", "") == "")
+            {
+                MessageBox.Show("There are empty fields, Please complete all fields", "Empty fields", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            if (rb_putty.Checked == false && rb_filezilla.Checked == false && rb_winscp.Checked == false && rb_heidi.Checked == false)
+            {
+                MessageBox.Show("You need to select the connect method", "No method selected", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            string Port = txt_port.Text;
+
+            Thread OpenThread = new Thread(() =>
+            {
+                ProcessStartInfo startInfo = new ProcessStartInfo();
+                
+                if (rb_putty.Checked)
+                {
+                    startInfo.FileName = PuttyPath;
+                    startInfo.Arguments = string.Format("{0}@{1} -pw {2} -P {3}", thisAccount.username, thisAccount.host, thisAccount.password, Port);
+                }
+
+                if (rb_filezilla.Checked)
+                {
+                    startInfo.FileName = FilezillaPath;
+                    startInfo.Arguments = string.Format("ftp://{0}:{1}@{2}:{3}", thisAccount.username, thisAccount.password, thisAccount.host, Port);
+                }
+
+                if (rb_winscp.Checked)
+                {
+                    startInfo.FileName = WinScpPath;
+                    startInfo.Arguments = string.Format("sftp://{0}:{1}@{2}:{3}", thisAccount.username, thisAccount.password, thisAccount.host, Port);
+                }
+
+                if (rb_heidi.Checked)
+                {
+                    startInfo.FileName = HeidiPath;
+                    startInfo.Arguments = string.Format("--host={0} --user={1} --password={2} --port={3}", thisAccount.host, thisAccount.username, thisAccount.password, Port);
+                }
+
+                Process process = new Process();
+                process.StartInfo = startInfo;
+                process.Start();
+            });
+
+            OpenThread.Start();
         }
     }
 
