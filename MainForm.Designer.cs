@@ -36,7 +36,6 @@ namespace UtilityLauncher
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.materialCard2 = new MaterialSkin.Controls.MaterialCard();
             this.txt_host = new MaterialSkin.Controls.MaterialTextBox();
-            this.chk_editing = new MaterialSkin.Controls.MaterialCheckbox();
             this.btn_swithPass = new MaterialSkin.Controls.MaterialButton();
             this.chk_mysql = new MaterialSkin.Controls.MaterialCheckbox();
             this.chk_sftp = new MaterialSkin.Controls.MaterialCheckbox();
@@ -129,7 +128,6 @@ namespace UtilityLauncher
             // 
             this.materialCard2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.materialCard2.Controls.Add(this.txt_host);
-            this.materialCard2.Controls.Add(this.chk_editing);
             this.materialCard2.Controls.Add(this.btn_swithPass);
             this.materialCard2.Controls.Add(this.chk_mysql);
             this.materialCard2.Controls.Add(this.chk_sftp);
@@ -164,21 +162,6 @@ namespace UtilityLauncher
             this.txt_host.Size = new System.Drawing.Size(295, 50);
             this.txt_host.TabIndex = 31;
             this.txt_host.Text = "";
-            // 
-            // chk_editing
-            // 
-            this.chk_editing.AutoSize = true;
-            this.chk_editing.Depth = 0;
-            this.chk_editing.Enabled = false;
-            this.chk_editing.Location = new System.Drawing.Point(53, 261);
-            this.chk_editing.Margin = new System.Windows.Forms.Padding(0);
-            this.chk_editing.MouseLocation = new System.Drawing.Point(-1, -1);
-            this.chk_editing.MouseState = MaterialSkin.MouseState.HOVER;
-            this.chk_editing.Name = "chk_editing";
-            this.chk_editing.Ripple = true;
-            this.chk_editing.Size = new System.Drawing.Size(35, 37);
-            this.chk_editing.TabIndex = 30;
-            this.chk_editing.UseVisualStyleBackColor = true;
             // 
             // btn_swithPass
             // 
@@ -420,6 +403,7 @@ namespace UtilityLauncher
             this.btn_edit.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Text;
             this.btn_edit.UseAccentColor = false;
             this.btn_edit.UseVisualStyleBackColor = true;
+            this.btn_edit.Click += new System.EventHandler(this.btn_edit_Click);
             // 
             // btn_open
             // 
@@ -1003,7 +987,6 @@ namespace UtilityLauncher
         private MaterialSkin.Controls.MaterialLabel materialLabel1;
         private System.Windows.Forms.OpenFileDialog ofd_searchApps;
         private MaterialSkin.Controls.MaterialButton btn_swithPass;
-        private MaterialSkin.Controls.MaterialCheckbox chk_editing;
         private MaterialSkin.Controls.MaterialTextBox txt_host;
         private MaterialSkin.Controls.MaterialTextBox txt_port;
     }

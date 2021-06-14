@@ -26,6 +26,7 @@ namespace UtilityLauncher
         private string WinScpPath = "";
         private string FilezillaPath = "";
 
+        private bool isEditing = false;
         private bool showPassword = false;
 
         private List<Account> accounts = new List<Account>();
@@ -48,7 +49,6 @@ namespace UtilityLauncher
 
 
             txt_pass.Password = true;
-            chk_editing.Visible = false;
 
             comb_accounts.Items.Add("Select an account");
             comb_accounts.SelectedItem = "Select an account";
@@ -154,7 +154,10 @@ namespace UtilityLauncher
             {
                 string basePath = AppDomain.CurrentDomain.BaseDirectory + "/data";
 
-                AccountName = AccountName + $" ({AccountUser}@{AccountHost})";
+                if (!AccountName.Contains($"{AccountUser}@{AccountHost}"))
+                {
+                    AccountName = AccountName + $" ({AccountUser}@{AccountHost})";
+                }
 
                 for (int i = 0; i < 9999; i++)
                 {
@@ -683,14 +686,23 @@ namespace UtilityLauncher
 
         private void btn_clear_Click(object sender, EventArgs e)
         {
+            if (isEditing)
+            {
+                isEditing = false;
+                btn_clear.Text = "Clear";
+                btn_add_update.Text = "Add";
+
+                btn_clear.Left = 565;
+                btn_add_update.Left = 640;
+                btn_add_update.Width = 50;
+            }
+
             rb_putty.Checked = false;
             rb_heidi.Checked = false;
             rb_winscp.Checked = false;
             rb_filezilla.Checked = false;
 
             comb_accounts.SelectedItem = "Select an account";
-
-            chk_editing.Checked = false;
 
             chk_ssh.Checked = false;
             chk_ftp.Checked = false;
@@ -720,9 +732,37 @@ namespace UtilityLauncher
                 return;
             }
 
-            if (chk_editing.Checked == true)
+            if (isEditing == true)
             {
+                DialogResult res = MessageBox.Show($"Are you sure do you want to update \"{thisAccount.name}\" Account?", "Update account", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
+                if (res != DialogResult.Yes)
+                {
+                    return;
+                }
+
+                comb_accounts.Items.Remove(thisAccount.name);
+
+                if (File.Exists(thisAccount.path))
+                {
+                    File.Delete(thisAccount.path);
+                }
+
+                accounts.Remove(thisAccount);
+
+                thisAccount = null;
+
+                AccountEncrypt(txt_host.Text, txt_name.Text, txt_user.Text, txt_pass.Text, chk_ssh.Checked, chk_ftp.Checked, chk_sftp.Checked, chk_mysql.Checked);
+
+                comb_accounts.SelectedItem = "Select an account";
+
+                isEditing = false;
+                btn_clear.Text = "Clear";
+                btn_add_update.Text = "Add";
+
+                btn_clear.Left = 565;
+                btn_add_update.Left = 640;
+                btn_add_update.Width = 50;
             }
             else
             {
@@ -909,6 +949,33 @@ namespace UtilityLauncher
 
                 comb_accounts.SelectedItem = "Select an account";
             }
+        }
+
+        private void btn_edit_Click(object sender, EventArgs e)
+        {
+            if (comb_accounts.SelectedItem.ToString() == "Select an account")
+            {
+                return;
+            }
+
+            isEditing = true;
+
+            btn_clear.Text = "Cancel";
+            btn_add_update.Text = "Update";
+            btn_add_update.Width = 60;
+
+            btn_clear.Left = 540;
+            btn_add_update.Left = 620;
+
+            txt_name.Text = thisAccount.name;
+            txt_host.Text = thisAccount.host;
+            txt_user.Text = thisAccount.username;
+            txt_pass.Text = thisAccount.password;
+
+            chk_ssh.Checked = thisAccount.putty;
+            chk_ftp.Checked = thisAccount.filezilla;
+            chk_sftp.Checked = thisAccount.winscp;
+            chk_mysql.Checked = thisAccount.heidi;
         }
     }
 
