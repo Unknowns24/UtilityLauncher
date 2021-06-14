@@ -160,7 +160,7 @@ namespace UtilityLauncher
             this.txt_host.Multiline = false;
             this.txt_host.Name = "txt_host";
             this.txt_host.Size = new System.Drawing.Size(295, 50);
-            this.txt_host.TabIndex = 31;
+            this.txt_host.TabIndex = 12;
             this.txt_host.Text = "";
             // 
             // btn_swithPass
@@ -175,7 +175,7 @@ namespace UtilityLauncher
             this.btn_swithPass.MouseState = MaterialSkin.MouseState.HOVER;
             this.btn_swithPass.Name = "btn_swithPass";
             this.btn_swithPass.Size = new System.Drawing.Size(157, 36);
-            this.btn_swithPass.TabIndex = 29;
+            this.btn_swithPass.TabIndex = 14;
             this.btn_swithPass.Text = "Reveal Password";
             this.btn_swithPass.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Outlined;
             this.btn_swithPass.UseAccentColor = false;
@@ -193,7 +193,7 @@ namespace UtilityLauncher
             this.chk_mysql.Name = "chk_mysql";
             this.chk_mysql.Ripple = true;
             this.chk_mysql.Size = new System.Drawing.Size(168, 37);
-            this.chk_mysql.TabIndex = 28;
+            this.chk_mysql.TabIndex = 18;
             this.chk_mysql.Text = "HeidiSQL (MySQL)";
             this.chk_mysql.UseVisualStyleBackColor = true;
             // 
@@ -208,7 +208,7 @@ namespace UtilityLauncher
             this.chk_sftp.Name = "chk_sftp";
             this.chk_sftp.Ripple = true;
             this.chk_sftp.Size = new System.Drawing.Size(146, 37);
-            this.chk_sftp.TabIndex = 27;
+            this.chk_sftp.TabIndex = 17;
             this.chk_sftp.Text = "WinSCP (SFTP)";
             this.chk_sftp.UseVisualStyleBackColor = true;
             // 
@@ -223,7 +223,7 @@ namespace UtilityLauncher
             this.chk_ftp.Name = "chk_ftp";
             this.chk_ftp.Ripple = true;
             this.chk_ftp.Size = new System.Drawing.Size(133, 37);
-            this.chk_ftp.TabIndex = 26;
+            this.chk_ftp.TabIndex = 16;
             this.chk_ftp.Text = "Filezilla (FTP)";
             this.chk_ftp.UseVisualStyleBackColor = true;
             // 
@@ -238,7 +238,7 @@ namespace UtilityLauncher
             this.chk_ssh.Name = "chk_ssh";
             this.chk_ssh.Ripple = true;
             this.chk_ssh.Size = new System.Drawing.Size(118, 37);
-            this.chk_ssh.TabIndex = 25;
+            this.chk_ssh.TabIndex = 15;
             this.chk_ssh.Text = "Putty (SSH)";
             this.chk_ssh.UseVisualStyleBackColor = true;
             // 
@@ -254,7 +254,7 @@ namespace UtilityLauncher
             this.txt_pass.Multiline = false;
             this.txt_pass.Name = "txt_pass";
             this.txt_pass.Size = new System.Drawing.Size(421, 50);
-            this.txt_pass.TabIndex = 23;
+            this.txt_pass.TabIndex = 13;
             this.txt_pass.Text = "";
             // 
             // txt_user
@@ -269,7 +269,7 @@ namespace UtilityLauncher
             this.txt_user.Multiline = false;
             this.txt_user.Name = "txt_user";
             this.txt_user.Size = new System.Drawing.Size(295, 50);
-            this.txt_user.TabIndex = 21;
+            this.txt_user.TabIndex = 11;
             this.txt_user.Text = "";
             // 
             // txt_name
@@ -284,7 +284,7 @@ namespace UtilityLauncher
             this.txt_name.Multiline = false;
             this.txt_name.Name = "txt_name";
             this.txt_name.Size = new System.Drawing.Size(602, 50);
-            this.txt_name.TabIndex = 20;
+            this.txt_name.TabIndex = 10;
             this.txt_name.Text = "";
             // 
             // btn_clear
@@ -320,7 +320,7 @@ namespace UtilityLauncher
             this.btn_add_update.MouseState = MaterialSkin.MouseState.HOVER;
             this.btn_add_update.Name = "btn_add_update";
             this.btn_add_update.Size = new System.Drawing.Size(50, 36);
-            this.btn_add_update.TabIndex = 18;
+            this.btn_add_update.TabIndex = 20;
             this.btn_add_update.Text = "Add";
             this.btn_add_update.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
             this.btn_add_update.UseAccentColor = false;
@@ -362,7 +362,7 @@ namespace UtilityLauncher
             this.txt_port.Multiline = false;
             this.txt_port.Name = "txt_port";
             this.txt_port.Size = new System.Drawing.Size(94, 50);
-            this.txt_port.TabIndex = 32;
+            this.txt_port.TabIndex = 2;
             this.txt_port.Text = "";
             // 
             // btn_delete
@@ -378,7 +378,7 @@ namespace UtilityLauncher
             this.btn_delete.MouseState = MaterialSkin.MouseState.HOVER;
             this.btn_delete.Name = "btn_delete";
             this.btn_delete.Size = new System.Drawing.Size(73, 36);
-            this.btn_delete.TabIndex = 18;
+            this.btn_delete.TabIndex = 7;
             this.btn_delete.Text = "Delete";
             this.btn_delete.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Text;
             this.btn_delete.UseAccentColor = false;
@@ -398,7 +398,7 @@ namespace UtilityLauncher
             this.btn_edit.MouseState = MaterialSkin.MouseState.HOVER;
             this.btn_edit.Name = "btn_edit";
             this.btn_edit.Size = new System.Drawing.Size(53, 36);
-            this.btn_edit.TabIndex = 17;
+            this.btn_edit.TabIndex = 8;
             this.btn_edit.Text = "Edit";
             this.btn_edit.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Text;
             this.btn_edit.UseAccentColor = false;
@@ -418,7 +418,7 @@ namespace UtilityLauncher
             this.btn_open.MouseState = MaterialSkin.MouseState.HOVER;
             this.btn_open.Name = "btn_open";
             this.btn_open.Size = new System.Drawing.Size(60, 36);
-            this.btn_open.TabIndex = 16;
+            this.btn_open.TabIndex = 9;
             this.btn_open.Text = "Open";
             this.btn_open.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
             this.btn_open.UseAccentColor = false;
@@ -436,7 +436,7 @@ namespace UtilityLauncher
             this.rb_heidi.Name = "rb_heidi";
             this.rb_heidi.Ripple = true;
             this.rb_heidi.Size = new System.Drawing.Size(101, 37);
-            this.rb_heidi.TabIndex = 5;
+            this.rb_heidi.TabIndex = 6;
             this.rb_heidi.TabStop = true;
             this.rb_heidi.Text = "HeidiSQL";
             this.rb_heidi.UseVisualStyleBackColor = true;
@@ -470,7 +470,7 @@ namespace UtilityLauncher
             this.rb_winscp.Name = "rb_winscp";
             this.rb_winscp.Ripple = true;
             this.rb_winscp.Size = new System.Drawing.Size(146, 37);
-            this.rb_winscp.TabIndex = 3;
+            this.rb_winscp.TabIndex = 5;
             this.rb_winscp.TabStop = true;
             this.rb_winscp.Text = "WinSCP (SFTP)";
             this.rb_winscp.UseVisualStyleBackColor = true;
@@ -487,7 +487,7 @@ namespace UtilityLauncher
             this.rb_putty.Name = "rb_putty";
             this.rb_putty.Ripple = true;
             this.rb_putty.Size = new System.Drawing.Size(118, 37);
-            this.rb_putty.TabIndex = 2;
+            this.rb_putty.TabIndex = 3;
             this.rb_putty.TabStop = true;
             this.rb_putty.Text = "Putty (SSH)";
             this.rb_putty.UseVisualStyleBackColor = true;
