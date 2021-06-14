@@ -720,6 +720,12 @@ namespace UtilityLauncher
 
         private void btn_add_update_Click(object sender, EventArgs e)
         {
+            if (userEncryptPassword == "" || userEncryptPassword == null)
+            {
+                MessageBox.Show("You need to set a password in the configs before save an account", "No password", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
             if (txt_host.Text.Replace(" ", "") == "" || txt_name.Text.Replace(" ", "") == "" || txt_user.Text.Replace(" ", "") == "")
             {
                 MessageBox.Show("There are empty fields, Please complete all fields", "Empty fields", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -895,24 +901,48 @@ namespace UtilityLauncher
                 
                 if (rb_putty.Checked)
                 {
+                    if (PuttyPath == "" || PuttyPath == null)
+                    {
+                        MessageBox.Show("Please, Set the putty.exe path in the configuration", "No Path", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        return;
+                    }
+
                     startInfo.FileName = PuttyPath;
                     startInfo.Arguments = string.Format("{0}@{1} -pw {2} -P {3}", thisAccount.username, thisAccount.host, thisAccount.password, Port);
                 }
 
                 if (rb_filezilla.Checked)
                 {
+                    if (FilezillaPath == "" || FilezillaPath == null)
+                    {
+                        MessageBox.Show("Please, Set the filezilla.exe path in the configuration", "No Path", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        return;
+                    }
+
                     startInfo.FileName = FilezillaPath;
                     startInfo.Arguments = string.Format("ftp://{0}:{1}@{2}:{3}", thisAccount.username, thisAccount.password, thisAccount.host, Port);
                 }
 
                 if (rb_winscp.Checked)
                 {
+                    if (WinScpPath == "" || WinScpPath == null)
+                    {
+                        MessageBox.Show("Please, Set the WinSCP.exe path in the configuration", "No Path", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        return;
+                    }
+
                     startInfo.FileName = WinScpPath;
                     startInfo.Arguments = string.Format("sftp://{0}:{1}@{2}:{3}", thisAccount.username, thisAccount.password, thisAccount.host, Port);
                 }
 
                 if (rb_heidi.Checked)
                 {
+                    if (HeidiPath == "" || HeidiPath == null)
+                    {
+                        MessageBox.Show("Please, Set the heidisql.exe path in the configuration", "No Path", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        return;
+                    }
+
                     startInfo.FileName = HeidiPath;
                     startInfo.Arguments = string.Format("--host={0} --user={1} --password={2} --port={3}", thisAccount.host, thisAccount.username, thisAccount.password, Port);
                 }
