@@ -59,15 +59,5 @@ namespace UtilityLauncher.Properties {
                 resourceCulture = value;
             }
         }
-        
-        /// <summary>
-        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap picolisp_icon_132095 {
-            get {
-                object obj = ResourceManager.GetObject("picolisp_icon_132095", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
     }
 }

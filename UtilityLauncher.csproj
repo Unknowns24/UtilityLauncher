@@ -104,15 +104,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\picolisp_icon_132095.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="database.ico" />
     <Content Include="databaseicon.ico" />
-    <Content Include="iconfinder-server-4417119_116634.ico" />
-    <Content Include="password.ico" />
-    <Content Include="picolisp_icon_132094.ico" />
-    <Content Include="shield.ico" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.7.2">
@@ -125,6 +117,9 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Resources\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

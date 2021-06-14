@@ -1,29 +1,27 @@
 ﻿using System;
 using System.IO;
-using System.Net;
+using System.Linq;
+using System.Text;
 using MaterialSkin;
-using System.Drawing;
 using System.Windows.Forms;
 using MaterialSkin.Controls;
 using System.Collections.Generic;
-using System.IO.Compression;
-using System.Text;
-using System.Collections.Specialized;
 using System.Security.Cryptography;
-using System.Linq;
+using System.Net.NetworkInformation;
 
-namespace FileProtecter
+namespace UtilityLauncher
 {
     public partial class MainForm : MaterialForm
     {
         Random rnd = new Random();
         MaterialSkinManager materialSkinManager;
 
-        private string userEncryptPassword;
-        private string FillezillaPath;
-        private string WinScpPath;
-        private string HeidiPath;
-        private string PuttyPath;
+        private string userEncryptPassword = "";
+
+        private string HeidiPath = "";
+        private string PuttyPath = "";
+        private string WinScpPath = "";
+        private string FilezillaPath = "";
 
         private List<Account> accounts = new List<Account>();
 
@@ -46,7 +44,7 @@ namespace FileProtecter
 
         private void loadAccounts()
         {
-            string basePath = AppDomain.CurrentDomain.BaseDirectory + "/local";
+            string basePath = AppDomain.CurrentDomain.BaseDirectory + "/data";
 
             if (Directory.Exists(basePath))
             {
@@ -61,7 +59,57 @@ namespace FileProtecter
         {
             string basePath = AppDomain.CurrentDomain.BaseDirectory + "/other.ulfs";
 
-            // READ FILE
+            if (File.Exists(basePath))
+            {
+                try
+                {
+                    string password = MD5Hash(GetMacAdress());
+
+                    // Create sha256 hash
+                    SHA256 mySHA256 = SHA256Managed.Create();
+                    byte[] key = mySHA256.ComputeHash(Encoding.ASCII.GetBytes(password));
+
+                    // Create secret IV
+                    byte[] iv = new byte[16] { 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0 };
+
+                    string decrypt = Aes_Decrypt(File.ReadAllText(basePath), key, iv);
+
+                    Dictionary<string, string> Settings = jsonToDictionary(decrypt);
+                    
+                    userEncryptPassword = Settings["userEncryptPassword"];
+
+                    HeidiPath = Settings["HeidiPath"];
+                    PuttyPath = Settings["PuttyPath"];
+                    WinScpPath = Settings["WinScpPath"];
+                    FilezillaPath = Settings["FilezillaPath"];
+
+                    txt_filesPass.Text = userEncryptPassword;
+                    txt_filesPass.Enabled = false;
+
+                    txt_heidiPath.Text = HeidiPath;
+                    txt_puttyPath.Text = PuttyPath;
+                    txt_winscpPath.Text = WinScpPath;
+                    txt_filezillaPath.Text = FilezillaPath;
+                }
+                catch(Exception err)
+                {
+                    MessageBox.Show(err.ToString(), "Parse file error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Error while tring to read saved settings", "Parse file error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    txt_filesPass.Text = "";
+                    txt_puttyPath.Text = "";
+                    txt_heidiPath.Text = "";
+                    txt_winscpPath.Text = "";
+                    txt_filezillaPath.Text = "";
+                }
+            }
+            else
+            {
+                txt_filesPass.Text = "";
+                txt_puttyPath.Text = "";
+                txt_heidiPath.Text = "";
+                txt_winscpPath.Text = "";
+                txt_filezillaPath.Text = "";
+            }
         }
 
 
@@ -78,7 +126,7 @@ namespace FileProtecter
         public Dictionary<string, string> jsonToDictionary(string json)
         {
             string[] keyValueArray = json.Replace("{", string.Empty).Replace("}", string.Empty).Replace("\"", string.Empty).Split(',');
-            return keyValueArray.ToDictionary(item => item.Split(':')[0], item => item.Split(':')[1]);
+            return keyValueArray.ToDictionary(item => item.Split(':')[0], item => item.Substring(item.Split(':')[0].Length + 1));
         }
 
         /////////////////////////
@@ -139,11 +187,11 @@ namespace FileProtecter
             }
         }
 
-        //////////////////
-        // Encryptation //
-        //////////////////
+        ///////////////////////////
+        // Encryptation Function //
+        ///////////////////////////
 
-        private string Aes_Encrypt(string plainText, byte[] key, byte[] iv)
+        public string Aes_Encrypt(string plainText, byte[] key, byte[] iv)
         {
             // Instantiate a new Aes object to perform string symmetric encryption
             Aes encryptor = Aes.Create();
@@ -190,7 +238,7 @@ namespace FileProtecter
             return cipherText;
         }
 
-        private string Aes_Decrypt(string cipherText, byte[] key, byte[] iv)
+        public string Aes_Decrypt(string cipherText, byte[] key, byte[] iv)
         {
             // Instantiate a new Aes object to perform string symmetric encryption
             Aes encryptor = Aes.Create();
@@ -245,7 +293,7 @@ namespace FileProtecter
             return plainText;
         }
 
-        public static string MD5Hash(string text)
+        public string MD5Hash(string text)
         {
             MD5 md5 = new MD5CryptoServiceProvider();
 
@@ -266,6 +314,64 @@ namespace FileProtecter
             return strBuilder.ToString();
         }
 
+        /////////////////////
+        // Other Functions //
+        /////////////////////
+
+        public string GetMacAdress()
+        {
+            string mac = "NULL";
+            foreach (NetworkInterface nic in NetworkInterface.GetAllNetworkInterfaces())
+            {
+                if (nic.OperationalStatus == OperationalStatus.Up && (!nic.Description.Contains("Virtual") && !nic.Description.Contains("Pseudo")))
+                {
+                    if (nic.GetPhysicalAddress().ToString() != "")
+                    {
+                        mac = nic.GetPhysicalAddress().ToString();
+                        break;
+                    }
+                }
+            }
+
+            return mac;
+        }
+
+        private void SaveSettings()
+        {
+            string mac = GetMacAdress();
+
+            if (mac == "NULL")
+            {
+                MessageBox.Show("An error ocurred while trying to get the Mac Adress", "Mac Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            var keyValues = new Dictionary<string, string> // Se crea un diccionario donde se pondra una structura Key Value para ser codificada a Json
+            {
+                { "userEncryptPassword", MD5Hash(txt_filesPass.Text) },
+                { "HeidiPath",  txt_heidiPath.Text},
+                { "PuttyPath",  txt_puttyPath.Text},
+                { "WinScpPath",  txt_winscpPath.Text},
+                { "FilezillaPath",  txt_filezillaPath.Text}
+            };
+
+            string json = DictionaryToJson(keyValues);
+
+            string password = MD5Hash(mac);
+
+            // Create sha256 hash
+            SHA256 mySHA256 = SHA256Managed.Create();
+            byte[] key = mySHA256.ComputeHash(Encoding.ASCII.GetBytes(password));
+
+            // Create secret IV
+            byte[] iv = new byte[16] { 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0 };
+
+            string encrypted = Aes_Encrypt(json, key, iv);
+
+            string basePath = AppDomain.CurrentDomain.BaseDirectory + "/other.ulfs";
+
+            File.WriteAllText(basePath, encrypted);
+        }
 
         //////////////////
         // Apps Install //
@@ -289,6 +395,167 @@ namespace FileProtecter
         private void btn_heidiInstall_Click(object sender, EventArgs e)
         {
             System.Diagnostics.Process.Start("https://www.heidisql.com/download.php?download=installer");
+        }
+
+        /////////////////
+        // Search Apps //
+        /////////////////
+
+        private void btn_filezillaSearch_Click(object sender, EventArgs e)
+        {
+            ofd_searchApps.Title = "Open Filezilla executable";
+            ofd_searchApps.FileName = "filezilla.exe";
+            ofd_searchApps.ShowDialog();
+            string path = ofd_searchApps.FileName;
+
+            if (Path.GetFileName(path) == "filezilla.exe")
+            {
+                if (File.ReadAllText(path).Contains("MZ"))
+                {
+                    txt_filezillaPath.Text = path;
+                }
+                else
+                {
+                    MessageBox.Show("Please, Select a valid filezilla executable.", "Invalid Program", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Please, Select a valid filezilla executable.", "Invalid Program", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
+
+        private void btn_winscpSearch_Click(object sender, EventArgs e)
+        {
+            ofd_searchApps.Title = "Open WinSCP executable";
+            ofd_searchApps.FileName = "WinSCP.exe";
+            ofd_searchApps.ShowDialog();
+            string path = ofd_searchApps.FileName;
+
+            if (Path.GetFileName(path) == "WinSCP.exe")
+            {
+                if (File.ReadAllText(path).Contains("MZ"))
+                {
+                    txt_winscpPath.Text = path;
+                }
+                else
+                {
+                    MessageBox.Show("Please, Select a valid WinSCP executable.", "Invalid Program", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Please, Select a valid WinSCP executable.", "Invalid Program", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
+
+        private void btn_puttySearch_Click(object sender, EventArgs e)
+        {
+            ofd_searchApps.Title = "Open Putty executable";
+            ofd_searchApps.FileName = "putty.exe";
+            ofd_searchApps.ShowDialog();
+            string path = ofd_searchApps.FileName;
+
+            if (Path.GetFileName(path) == "putty.exe")
+            {
+                if (File.ReadAllText(path).Contains("MZ"))
+                {
+                    txt_puttyPath.Text = path;
+                }
+                else
+                {
+                    MessageBox.Show("Please, Select a valid Putty executable.", "Invalid Program", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Please, Select a valid Putty executable.", "Invalid Program", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
+
+        private void btn_heidiSearch_Click(object sender, EventArgs e)
+        {
+            ofd_searchApps.Title = "Open HeidiSQL executable";
+            ofd_searchApps.FileName = "heidisql.exe";
+            ofd_searchApps.ShowDialog();
+            string path = ofd_searchApps.FileName;
+
+            if (Path.GetFileName(path) == "heidisql.exe")
+            {
+                if (File.ReadAllText(path).Contains("MZ"))
+                {
+                    txt_heidiPath.Text = path;
+                }
+                else
+                {
+                    MessageBox.Show("Please, Select a valid HeidiSQL executable.", "Invalid Program", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Please, Select a valid HeidiSQL executable.", "Invalid Program", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
+
+        //////////////////////
+        // Settings Buttons //
+        //////////////////////
+
+        private void btn_cfg_cancel_Click(object sender, EventArgs e)
+        {
+            if ((userEncryptPassword != "" && userEncryptPassword != " ") 
+                || (HeidiPath != "" && HeidiPath != " ") 
+                || (PuttyPath != "" && PuttyPath != " ") 
+                || (WinScpPath != "" && WinScpPath != " ")
+                || (FilezillaPath != "" && FilezillaPath != " "))
+            {
+                txt_filesPass.Text = userEncryptPassword;
+                txt_heidiPath.Text = HeidiPath;
+                txt_puttyPath.Text = PuttyPath;
+                txt_winscpPath.Text = WinScpPath;
+                txt_filezillaPath.Text = FilezillaPath;
+            }
+            else
+            {
+                txt_filesPass.Text = "";
+                txt_puttyPath.Text = "";
+                txt_heidiPath.Text = "";
+                txt_winscpPath.Text = "";
+                txt_filezillaPath.Text = "";
+            }
+        }
+
+        private void btn_cfg_save_Click(object sender, EventArgs e)
+        {
+            if (txt_filesPass.Text.Replace(" ", "") == "")
+            {
+                MessageBox.Show("You can't set an empty password for the files", "Invalid Setting", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            string basePath = AppDomain.CurrentDomain.BaseDirectory + "/other.ulfs";
+
+            if (File.Exists(basePath))
+            {
+                DialogResult answer = MessageBox.Show("Your old settings will be rewritten if you continue, Do you want to continue?", "Existing Settings", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                if (answer == DialogResult.Yes)
+                {
+                    SaveSettings();
+                }
+            }
+            else
+            {
+                SaveSettings();
+            }
+
+            MessageBox.Show("Setting saved successfully", "Settings Saved!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            loadConfig();
+        }
+
+        private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Environment.Exit(-1);
         }
     }
 

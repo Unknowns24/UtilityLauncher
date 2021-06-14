@@ -1,5 +1,5 @@
 ﻿
-namespace FileProtecter
+namespace UtilityLauncher
 {
     partial class MainForm
     {
@@ -34,8 +34,30 @@ namespace FileProtecter
             this.textBoxContextMenuStrip1 = new MaterialSkin.Controls.TextBoxContextMenuStrip();
             this.materialTabControl1 = new MaterialSkin.Controls.MaterialTabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.materialCard2 = new MaterialSkin.Controls.MaterialCard();
+            this.chk_mysql = new MaterialSkin.Controls.MaterialCheckbox();
+            this.chk_sftp = new MaterialSkin.Controls.MaterialCheckbox();
+            this.chk_ftp = new MaterialSkin.Controls.MaterialCheckbox();
+            this.chk_ssh = new MaterialSkin.Controls.MaterialCheckbox();
+            this.chk_revealPassword = new MaterialSkin.Controls.MaterialCheckbox();
+            this.txt_pass = new MaterialSkin.Controls.MaterialTextBox();
+            this.txt_port = new MaterialSkin.Controls.MaterialTextBox();
+            this.txt_user = new MaterialSkin.Controls.MaterialTextBox();
+            this.txt_name = new MaterialSkin.Controls.MaterialTextBox();
+            this.btn_clear = new MaterialSkin.Controls.MaterialButton();
+            this.btn_add_update = new MaterialSkin.Controls.MaterialButton();
+            this.materialCard1 = new MaterialSkin.Controls.MaterialCard();
+            this.btn_delete = new MaterialSkin.Controls.MaterialButton();
+            this.btn_edit = new MaterialSkin.Controls.MaterialButton();
+            this.btn_open = new MaterialSkin.Controls.MaterialButton();
+            this.rb_heidi = new MaterialSkin.Controls.MaterialRadioButton();
+            this.rb_filezilla = new MaterialSkin.Controls.MaterialRadioButton();
+            this.rb_winscp = new MaterialSkin.Controls.MaterialRadioButton();
+            this.rb_putty = new MaterialSkin.Controls.MaterialRadioButton();
+            this.lbl_account = new MaterialSkin.Controls.MaterialLabel();
             this.comb_accounts = new MaterialSkin.Controls.MaterialComboBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.materialLabel1 = new MaterialSkin.Controls.MaterialLabel();
             this.btn_filezillaSearch = new MaterialSkin.Controls.MaterialButton();
             this.btn_winscpSearch = new MaterialSkin.Controls.MaterialButton();
             this.btn_puttySearch = new MaterialSkin.Controls.MaterialButton();
@@ -57,32 +79,12 @@ namespace FileProtecter
             this.txt_puttyPath = new MaterialSkin.Controls.MaterialTextBox();
             this.txt_filezillaPath = new MaterialSkin.Controls.MaterialTextBox();
             this.img_list_icons = new System.Windows.Forms.ImageList(this.components);
-            this.materialCard1 = new MaterialSkin.Controls.MaterialCard();
-            this.lbl_account = new MaterialSkin.Controls.MaterialLabel();
-            this.rb_putty = new MaterialSkin.Controls.MaterialRadioButton();
-            this.rb_winscp = new MaterialSkin.Controls.MaterialRadioButton();
-            this.rb_filezilla = new MaterialSkin.Controls.MaterialRadioButton();
-            this.rb_heidi = new MaterialSkin.Controls.MaterialRadioButton();
-            this.btn_edit = new MaterialSkin.Controls.MaterialButton();
-            this.btn_open = new MaterialSkin.Controls.MaterialButton();
-            this.btn_delete = new MaterialSkin.Controls.MaterialButton();
-            this.materialCard2 = new MaterialSkin.Controls.MaterialCard();
-            this.btn_clear = new MaterialSkin.Controls.MaterialButton();
-            this.btn_add_update = new MaterialSkin.Controls.MaterialButton();
-            this.txt_name = new MaterialSkin.Controls.MaterialTextBox();
-            this.txt_user = new MaterialSkin.Controls.MaterialTextBox();
-            this.txt_port = new MaterialSkin.Controls.MaterialTextBox();
-            this.txt_pass = new MaterialSkin.Controls.MaterialTextBox();
-            this.chk_revealPassword = new MaterialSkin.Controls.MaterialCheckbox();
-            this.chk_ssh = new MaterialSkin.Controls.MaterialCheckbox();
-            this.chk_ftp = new MaterialSkin.Controls.MaterialCheckbox();
-            this.chk_sftp = new MaterialSkin.Controls.MaterialCheckbox();
-            this.chk_mysql = new MaterialSkin.Controls.MaterialCheckbox();
+            this.ofd_searchApps = new System.Windows.Forms.OpenFileDialog();
             this.materialTabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
-            this.tabPage2.SuspendLayout();
-            this.materialCard1.SuspendLayout();
             this.materialCard2.SuspendLayout();
+            this.materialCard1.SuspendLayout();
+            this.tabPage2.SuspendLayout();
             this.SuspendLayout();
             // 
             // textBoxContextMenuStrip1
@@ -121,6 +123,358 @@ namespace FileProtecter
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Dashboard";
             // 
+            // materialCard2
+            // 
+            this.materialCard2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.materialCard2.Controls.Add(this.chk_mysql);
+            this.materialCard2.Controls.Add(this.chk_sftp);
+            this.materialCard2.Controls.Add(this.chk_ftp);
+            this.materialCard2.Controls.Add(this.chk_ssh);
+            this.materialCard2.Controls.Add(this.chk_revealPassword);
+            this.materialCard2.Controls.Add(this.txt_pass);
+            this.materialCard2.Controls.Add(this.txt_port);
+            this.materialCard2.Controls.Add(this.txt_user);
+            this.materialCard2.Controls.Add(this.txt_name);
+            this.materialCard2.Controls.Add(this.btn_clear);
+            this.materialCard2.Controls.Add(this.btn_add_update);
+            this.materialCard2.Depth = 0;
+            this.materialCard2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.materialCard2.Location = new System.Drawing.Point(19, 212);
+            this.materialCard2.Margin = new System.Windows.Forms.Padding(14);
+            this.materialCard2.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialCard2.Name = "materialCard2";
+            this.materialCard2.Padding = new System.Windows.Forms.Padding(14);
+            this.materialCard2.Size = new System.Drawing.Size(708, 312);
+            this.materialCard2.TabIndex = 19;
+            // 
+            // chk_mysql
+            // 
+            this.chk_mysql.AutoSize = true;
+            this.chk_mysql.Depth = 0;
+            this.chk_mysql.Location = new System.Drawing.Point(481, 208);
+            this.chk_mysql.Margin = new System.Windows.Forms.Padding(0);
+            this.chk_mysql.MouseLocation = new System.Drawing.Point(-1, -1);
+            this.chk_mysql.MouseState = MaterialSkin.MouseState.HOVER;
+            this.chk_mysql.Name = "chk_mysql";
+            this.chk_mysql.Ripple = true;
+            this.chk_mysql.Size = new System.Drawing.Size(168, 37);
+            this.chk_mysql.TabIndex = 28;
+            this.chk_mysql.Text = "HeidiSQL (MySQL)";
+            this.chk_mysql.UseVisualStyleBackColor = true;
+            // 
+            // chk_sftp
+            // 
+            this.chk_sftp.AutoSize = true;
+            this.chk_sftp.Depth = 0;
+            this.chk_sftp.Location = new System.Drawing.Point(324, 208);
+            this.chk_sftp.Margin = new System.Windows.Forms.Padding(0);
+            this.chk_sftp.MouseLocation = new System.Drawing.Point(-1, -1);
+            this.chk_sftp.MouseState = MaterialSkin.MouseState.HOVER;
+            this.chk_sftp.Name = "chk_sftp";
+            this.chk_sftp.Ripple = true;
+            this.chk_sftp.Size = new System.Drawing.Size(146, 37);
+            this.chk_sftp.TabIndex = 27;
+            this.chk_sftp.Text = "WinSCP (SFTP)";
+            this.chk_sftp.UseVisualStyleBackColor = true;
+            // 
+            // chk_ftp
+            // 
+            this.chk_ftp.AutoSize = true;
+            this.chk_ftp.Depth = 0;
+            this.chk_ftp.Location = new System.Drawing.Point(181, 208);
+            this.chk_ftp.Margin = new System.Windows.Forms.Padding(0);
+            this.chk_ftp.MouseLocation = new System.Drawing.Point(-1, -1);
+            this.chk_ftp.MouseState = MaterialSkin.MouseState.HOVER;
+            this.chk_ftp.Name = "chk_ftp";
+            this.chk_ftp.Ripple = true;
+            this.chk_ftp.Size = new System.Drawing.Size(133, 37);
+            this.chk_ftp.TabIndex = 26;
+            this.chk_ftp.Text = "Filezilla (FTP)";
+            this.chk_ftp.UseVisualStyleBackColor = true;
+            // 
+            // chk_ssh
+            // 
+            this.chk_ssh.AutoSize = true;
+            this.chk_ssh.Depth = 0;
+            this.chk_ssh.Location = new System.Drawing.Point(54, 208);
+            this.chk_ssh.Margin = new System.Windows.Forms.Padding(0);
+            this.chk_ssh.MouseLocation = new System.Drawing.Point(-1, -1);
+            this.chk_ssh.MouseState = MaterialSkin.MouseState.HOVER;
+            this.chk_ssh.Name = "chk_ssh";
+            this.chk_ssh.Ripple = true;
+            this.chk_ssh.Size = new System.Drawing.Size(118, 37);
+            this.chk_ssh.TabIndex = 25;
+            this.chk_ssh.Text = "Putty (SSH)";
+            this.chk_ssh.UseVisualStyleBackColor = true;
+            // 
+            // chk_revealPassword
+            // 
+            this.chk_revealPassword.AutoSize = true;
+            this.chk_revealPassword.Depth = 0;
+            this.chk_revealPassword.Location = new System.Drawing.Point(492, 155);
+            this.chk_revealPassword.Margin = new System.Windows.Forms.Padding(0);
+            this.chk_revealPassword.MouseLocation = new System.Drawing.Point(-1, -1);
+            this.chk_revealPassword.MouseState = MaterialSkin.MouseState.HOVER;
+            this.chk_revealPassword.Name = "chk_revealPassword";
+            this.chk_revealPassword.Ripple = true;
+            this.chk_revealPassword.Size = new System.Drawing.Size(156, 37);
+            this.chk_revealPassword.TabIndex = 24;
+            this.chk_revealPassword.Text = "Reveal Password";
+            this.chk_revealPassword.UseVisualStyleBackColor = true;
+            // 
+            // txt_pass
+            // 
+            this.txt_pass.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txt_pass.Depth = 0;
+            this.txt_pass.Font = new System.Drawing.Font("Roboto", 12F);
+            this.txt_pass.Hint = "Password";
+            this.txt_pass.Location = new System.Drawing.Point(54, 153);
+            this.txt_pass.MaxLength = 50;
+            this.txt_pass.MouseState = MaterialSkin.MouseState.OUT;
+            this.txt_pass.Multiline = false;
+            this.txt_pass.Name = "txt_pass";
+            this.txt_pass.Size = new System.Drawing.Size(421, 50);
+            this.txt_pass.TabIndex = 23;
+            this.txt_pass.Text = "";
+            // 
+            // txt_port
+            // 
+            this.txt_port.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txt_port.Depth = 0;
+            this.txt_port.Font = new System.Drawing.Font("Roboto", 12F);
+            this.txt_port.Hint = "Port";
+            this.txt_port.Location = new System.Drawing.Point(492, 87);
+            this.txt_port.MaxLength = 50;
+            this.txt_port.MouseState = MaterialSkin.MouseState.OUT;
+            this.txt_port.Multiline = false;
+            this.txt_port.Name = "txt_port";
+            this.txt_port.Size = new System.Drawing.Size(164, 50);
+            this.txt_port.TabIndex = 22;
+            this.txt_port.Text = "";
+            // 
+            // txt_user
+            // 
+            this.txt_user.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txt_user.Depth = 0;
+            this.txt_user.Font = new System.Drawing.Font("Roboto", 12F);
+            this.txt_user.Hint = "User";
+            this.txt_user.Location = new System.Drawing.Point(53, 87);
+            this.txt_user.MaxLength = 50;
+            this.txt_user.MouseState = MaterialSkin.MouseState.OUT;
+            this.txt_user.Multiline = false;
+            this.txt_user.Name = "txt_user";
+            this.txt_user.Size = new System.Drawing.Size(422, 50);
+            this.txt_user.TabIndex = 21;
+            this.txt_user.Text = "";
+            // 
+            // txt_name
+            // 
+            this.txt_name.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txt_name.Depth = 0;
+            this.txt_name.Font = new System.Drawing.Font("Roboto", 12F);
+            this.txt_name.Hint = "Account Name";
+            this.txt_name.Location = new System.Drawing.Point(54, 26);
+            this.txt_name.MaxLength = 50;
+            this.txt_name.MouseState = MaterialSkin.MouseState.OUT;
+            this.txt_name.Multiline = false;
+            this.txt_name.Name = "txt_name";
+            this.txt_name.Size = new System.Drawing.Size(602, 50);
+            this.txt_name.TabIndex = 20;
+            this.txt_name.Text = "";
+            // 
+            // btn_clear
+            // 
+            this.btn_clear.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.btn_clear.Depth = 0;
+            this.btn_clear.DrawShadows = true;
+            this.btn_clear.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_clear.HighEmphasis = true;
+            this.btn_clear.Icon = null;
+            this.btn_clear.Location = new System.Drawing.Point(565, 265);
+            this.btn_clear.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.btn_clear.MouseState = MaterialSkin.MouseState.HOVER;
+            this.btn_clear.Name = "btn_clear";
+            this.btn_clear.Size = new System.Drawing.Size(66, 36);
+            this.btn_clear.TabIndex = 19;
+            this.btn_clear.Text = "Clear";
+            this.btn_clear.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Text;
+            this.btn_clear.UseAccentColor = false;
+            this.btn_clear.UseVisualStyleBackColor = true;
+            // 
+            // btn_add_update
+            // 
+            this.btn_add_update.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.btn_add_update.Depth = 0;
+            this.btn_add_update.DrawShadows = true;
+            this.btn_add_update.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_add_update.HighEmphasis = true;
+            this.btn_add_update.Icon = null;
+            this.btn_add_update.Location = new System.Drawing.Point(640, 265);
+            this.btn_add_update.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.btn_add_update.MouseState = MaterialSkin.MouseState.HOVER;
+            this.btn_add_update.Name = "btn_add_update";
+            this.btn_add_update.Size = new System.Drawing.Size(50, 36);
+            this.btn_add_update.TabIndex = 18;
+            this.btn_add_update.Text = "Add";
+            this.btn_add_update.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            this.btn_add_update.UseAccentColor = false;
+            this.btn_add_update.UseVisualStyleBackColor = true;
+            // 
+            // materialCard1
+            // 
+            this.materialCard1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.materialCard1.Controls.Add(this.btn_delete);
+            this.materialCard1.Controls.Add(this.btn_edit);
+            this.materialCard1.Controls.Add(this.btn_open);
+            this.materialCard1.Controls.Add(this.rb_heidi);
+            this.materialCard1.Controls.Add(this.rb_filezilla);
+            this.materialCard1.Controls.Add(this.rb_winscp);
+            this.materialCard1.Controls.Add(this.rb_putty);
+            this.materialCard1.Controls.Add(this.lbl_account);
+            this.materialCard1.Controls.Add(this.comb_accounts);
+            this.materialCard1.Depth = 0;
+            this.materialCard1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.materialCard1.Location = new System.Drawing.Point(19, 17);
+            this.materialCard1.Margin = new System.Windows.Forms.Padding(14);
+            this.materialCard1.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialCard1.Name = "materialCard1";
+            this.materialCard1.Padding = new System.Windows.Forms.Padding(14);
+            this.materialCard1.Size = new System.Drawing.Size(708, 185);
+            this.materialCard1.TabIndex = 1;
+            // 
+            // btn_delete
+            // 
+            this.btn_delete.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.btn_delete.Depth = 0;
+            this.btn_delete.DrawShadows = true;
+            this.btn_delete.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_delete.HighEmphasis = true;
+            this.btn_delete.Icon = null;
+            this.btn_delete.Location = new System.Drawing.Point(460, 139);
+            this.btn_delete.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.btn_delete.MouseState = MaterialSkin.MouseState.HOVER;
+            this.btn_delete.Name = "btn_delete";
+            this.btn_delete.Size = new System.Drawing.Size(73, 36);
+            this.btn_delete.TabIndex = 18;
+            this.btn_delete.Text = "Delete";
+            this.btn_delete.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Text;
+            this.btn_delete.UseAccentColor = false;
+            this.btn_delete.UseVisualStyleBackColor = true;
+            // 
+            // btn_edit
+            // 
+            this.btn_edit.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.btn_edit.Depth = 0;
+            this.btn_edit.DrawShadows = true;
+            this.btn_edit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_edit.HighEmphasis = true;
+            this.btn_edit.Icon = null;
+            this.btn_edit.Location = new System.Drawing.Point(555, 139);
+            this.btn_edit.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.btn_edit.MouseState = MaterialSkin.MouseState.HOVER;
+            this.btn_edit.Name = "btn_edit";
+            this.btn_edit.Size = new System.Drawing.Size(53, 36);
+            this.btn_edit.TabIndex = 17;
+            this.btn_edit.Text = "Edit";
+            this.btn_edit.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Text;
+            this.btn_edit.UseAccentColor = false;
+            this.btn_edit.UseVisualStyleBackColor = true;
+            // 
+            // btn_open
+            // 
+            this.btn_open.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.btn_open.Depth = 0;
+            this.btn_open.DrawShadows = true;
+            this.btn_open.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_open.HighEmphasis = true;
+            this.btn_open.Icon = null;
+            this.btn_open.Location = new System.Drawing.Point(630, 139);
+            this.btn_open.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.btn_open.MouseState = MaterialSkin.MouseState.HOVER;
+            this.btn_open.Name = "btn_open";
+            this.btn_open.Size = new System.Drawing.Size(60, 36);
+            this.btn_open.TabIndex = 16;
+            this.btn_open.Text = "Open";
+            this.btn_open.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            this.btn_open.UseAccentColor = false;
+            this.btn_open.UseVisualStyleBackColor = true;
+            // 
+            // rb_heidi
+            // 
+            this.rb_heidi.AutoSize = true;
+            this.rb_heidi.Depth = 0;
+            this.rb_heidi.Location = new System.Drawing.Point(526, 96);
+            this.rb_heidi.Margin = new System.Windows.Forms.Padding(0);
+            this.rb_heidi.MouseLocation = new System.Drawing.Point(-1, -1);
+            this.rb_heidi.MouseState = MaterialSkin.MouseState.HOVER;
+            this.rb_heidi.Name = "rb_heidi";
+            this.rb_heidi.Ripple = true;
+            this.rb_heidi.Size = new System.Drawing.Size(101, 37);
+            this.rb_heidi.TabIndex = 5;
+            this.rb_heidi.TabStop = true;
+            this.rb_heidi.Text = "HeidiSQL";
+            this.rb_heidi.UseVisualStyleBackColor = true;
+            // 
+            // rb_filezilla
+            // 
+            this.rb_filezilla.AutoSize = true;
+            this.rb_filezilla.Depth = 0;
+            this.rb_filezilla.Location = new System.Drawing.Point(210, 96);
+            this.rb_filezilla.Margin = new System.Windows.Forms.Padding(0);
+            this.rb_filezilla.MouseLocation = new System.Drawing.Point(-1, -1);
+            this.rb_filezilla.MouseState = MaterialSkin.MouseState.HOVER;
+            this.rb_filezilla.Name = "rb_filezilla";
+            this.rb_filezilla.Ripple = true;
+            this.rb_filezilla.Size = new System.Drawing.Size(133, 37);
+            this.rb_filezilla.TabIndex = 4;
+            this.rb_filezilla.TabStop = true;
+            this.rb_filezilla.Text = "Filezilla (FTP)";
+            this.rb_filezilla.UseVisualStyleBackColor = true;
+            // 
+            // rb_winscp
+            // 
+            this.rb_winscp.AutoSize = true;
+            this.rb_winscp.Depth = 0;
+            this.rb_winscp.Location = new System.Drawing.Point(364, 96);
+            this.rb_winscp.Margin = new System.Windows.Forms.Padding(0);
+            this.rb_winscp.MouseLocation = new System.Drawing.Point(-1, -1);
+            this.rb_winscp.MouseState = MaterialSkin.MouseState.HOVER;
+            this.rb_winscp.Name = "rb_winscp";
+            this.rb_winscp.Ripple = true;
+            this.rb_winscp.Size = new System.Drawing.Size(146, 37);
+            this.rb_winscp.TabIndex = 3;
+            this.rb_winscp.TabStop = true;
+            this.rb_winscp.Text = "WinSCP (SFTP)";
+            this.rb_winscp.UseVisualStyleBackColor = true;
+            // 
+            // rb_putty
+            // 
+            this.rb_putty.AutoSize = true;
+            this.rb_putty.Depth = 0;
+            this.rb_putty.Location = new System.Drawing.Point(74, 96);
+            this.rb_putty.Margin = new System.Windows.Forms.Padding(0);
+            this.rb_putty.MouseLocation = new System.Drawing.Point(-1, -1);
+            this.rb_putty.MouseState = MaterialSkin.MouseState.HOVER;
+            this.rb_putty.Name = "rb_putty";
+            this.rb_putty.Ripple = true;
+            this.rb_putty.Size = new System.Drawing.Size(118, 37);
+            this.rb_putty.TabIndex = 2;
+            this.rb_putty.TabStop = true;
+            this.rb_putty.Text = "Putty (SSH)";
+            this.rb_putty.UseVisualStyleBackColor = true;
+            // 
+            // lbl_account
+            // 
+            this.lbl_account.AutoSize = true;
+            this.lbl_account.Depth = 0;
+            this.lbl_account.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.lbl_account.Location = new System.Drawing.Point(51, 14);
+            this.lbl_account.MouseState = MaterialSkin.MouseState.HOVER;
+            this.lbl_account.Name = "lbl_account";
+            this.lbl_account.Size = new System.Drawing.Size(63, 19);
+            this.lbl_account.TabIndex = 1;
+            this.lbl_account.Text = "Account:";
+            // 
             // comb_accounts
             // 
             this.comb_accounts.AutoResize = false;
@@ -145,6 +499,7 @@ namespace FileProtecter
             // tabPage2
             // 
             this.tabPage2.BackColor = System.Drawing.Color.White;
+            this.tabPage2.Controls.Add(this.materialLabel1);
             this.tabPage2.Controls.Add(this.btn_filezillaSearch);
             this.tabPage2.Controls.Add(this.btn_winscpSearch);
             this.tabPage2.Controls.Add(this.btn_puttySearch);
@@ -173,6 +528,18 @@ namespace FileProtecter
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Settings";
             // 
+            // materialLabel1
+            // 
+            this.materialLabel1.Depth = 0;
+            this.materialLabel1.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.materialLabel1.Location = new System.Drawing.Point(131, 425);
+            this.materialLabel1.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialLabel1.Name = "materialLabel1";
+            this.materialLabel1.Size = new System.Drawing.Size(586, 41);
+            this.materialLabel1.TabIndex = 20;
+            this.materialLabel1.Text = "Please, write the password in somewhere. because if you lose it, you could lose a" +
+    "ll your saved accounts";
+            // 
             // btn_filezillaSearch
             // 
             this.btn_filezillaSearch.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
@@ -190,6 +557,7 @@ namespace FileProtecter
             this.btn_filezillaSearch.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
             this.btn_filezillaSearch.UseAccentColor = false;
             this.btn_filezillaSearch.UseVisualStyleBackColor = true;
+            this.btn_filezillaSearch.Click += new System.EventHandler(this.btn_filezillaSearch_Click);
             // 
             // btn_winscpSearch
             // 
@@ -208,6 +576,7 @@ namespace FileProtecter
             this.btn_winscpSearch.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
             this.btn_winscpSearch.UseAccentColor = false;
             this.btn_winscpSearch.UseVisualStyleBackColor = true;
+            this.btn_winscpSearch.Click += new System.EventHandler(this.btn_winscpSearch_Click);
             // 
             // btn_puttySearch
             // 
@@ -226,6 +595,7 @@ namespace FileProtecter
             this.btn_puttySearch.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
             this.btn_puttySearch.UseAccentColor = false;
             this.btn_puttySearch.UseVisualStyleBackColor = true;
+            this.btn_puttySearch.Click += new System.EventHandler(this.btn_puttySearch_Click);
             // 
             // btn_heidiSearch
             // 
@@ -244,6 +614,7 @@ namespace FileProtecter
             this.btn_heidiSearch.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
             this.btn_heidiSearch.UseAccentColor = false;
             this.btn_heidiSearch.UseVisualStyleBackColor = true;
+            this.btn_heidiSearch.Click += new System.EventHandler(this.btn_heidiSearch_Click);
             // 
             // btn_cfg_cancel
             // 
@@ -263,6 +634,7 @@ namespace FileProtecter
             this.btn_cfg_cancel.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Text;
             this.btn_cfg_cancel.UseAccentColor = false;
             this.btn_cfg_cancel.UseVisualStyleBackColor = true;
+            this.btn_cfg_cancel.Click += new System.EventHandler(this.btn_cfg_cancel_Click);
             // 
             // btn_cfg_save
             // 
@@ -282,6 +654,7 @@ namespace FileProtecter
             this.btn_cfg_save.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
             this.btn_cfg_save.UseAccentColor = false;
             this.btn_cfg_save.UseVisualStyleBackColor = true;
+            this.btn_cfg_save.Click += new System.EventHandler(this.btn_cfg_save_Click);
             // 
             // btn_heidiInstall
             // 
@@ -444,6 +817,7 @@ namespace FileProtecter
             this.txt_filesPass.MouseState = MaterialSkin.MouseState.OUT;
             this.txt_filesPass.Multiline = false;
             this.txt_filesPass.Name = "txt_filesPass";
+            this.txt_filesPass.Password = true;
             this.txt_filesPass.Size = new System.Drawing.Size(583, 50);
             this.txt_filesPass.TabIndex = 3;
             this.txt_filesPass.Text = "";
@@ -502,357 +876,9 @@ namespace FileProtecter
             this.img_list_icons.Images.SetKeyName(2, "settings.png");
             this.img_list_icons.Images.SetKeyName(3, "information.png");
             // 
-            // materialCard1
+            // ofd_searchApps
             // 
-            this.materialCard1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.materialCard1.Controls.Add(this.btn_delete);
-            this.materialCard1.Controls.Add(this.btn_edit);
-            this.materialCard1.Controls.Add(this.btn_open);
-            this.materialCard1.Controls.Add(this.rb_heidi);
-            this.materialCard1.Controls.Add(this.rb_filezilla);
-            this.materialCard1.Controls.Add(this.rb_winscp);
-            this.materialCard1.Controls.Add(this.rb_putty);
-            this.materialCard1.Controls.Add(this.lbl_account);
-            this.materialCard1.Controls.Add(this.comb_accounts);
-            this.materialCard1.Depth = 0;
-            this.materialCard1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.materialCard1.Location = new System.Drawing.Point(19, 17);
-            this.materialCard1.Margin = new System.Windows.Forms.Padding(14);
-            this.materialCard1.MouseState = MaterialSkin.MouseState.HOVER;
-            this.materialCard1.Name = "materialCard1";
-            this.materialCard1.Padding = new System.Windows.Forms.Padding(14);
-            this.materialCard1.Size = new System.Drawing.Size(708, 185);
-            this.materialCard1.TabIndex = 1;
-            // 
-            // lbl_account
-            // 
-            this.lbl_account.AutoSize = true;
-            this.lbl_account.Depth = 0;
-            this.lbl_account.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.lbl_account.Location = new System.Drawing.Point(51, 14);
-            this.lbl_account.MouseState = MaterialSkin.MouseState.HOVER;
-            this.lbl_account.Name = "lbl_account";
-            this.lbl_account.Size = new System.Drawing.Size(63, 19);
-            this.lbl_account.TabIndex = 1;
-            this.lbl_account.Text = "Account:";
-            // 
-            // rb_putty
-            // 
-            this.rb_putty.AutoSize = true;
-            this.rb_putty.Depth = 0;
-            this.rb_putty.Location = new System.Drawing.Point(74, 96);
-            this.rb_putty.Margin = new System.Windows.Forms.Padding(0);
-            this.rb_putty.MouseLocation = new System.Drawing.Point(-1, -1);
-            this.rb_putty.MouseState = MaterialSkin.MouseState.HOVER;
-            this.rb_putty.Name = "rb_putty";
-            this.rb_putty.Ripple = true;
-            this.rb_putty.Size = new System.Drawing.Size(118, 37);
-            this.rb_putty.TabIndex = 2;
-            this.rb_putty.TabStop = true;
-            this.rb_putty.Text = "Putty (SSH)";
-            this.rb_putty.UseVisualStyleBackColor = true;
-            // 
-            // rb_winscp
-            // 
-            this.rb_winscp.AutoSize = true;
-            this.rb_winscp.Depth = 0;
-            this.rb_winscp.Location = new System.Drawing.Point(364, 96);
-            this.rb_winscp.Margin = new System.Windows.Forms.Padding(0);
-            this.rb_winscp.MouseLocation = new System.Drawing.Point(-1, -1);
-            this.rb_winscp.MouseState = MaterialSkin.MouseState.HOVER;
-            this.rb_winscp.Name = "rb_winscp";
-            this.rb_winscp.Ripple = true;
-            this.rb_winscp.Size = new System.Drawing.Size(146, 37);
-            this.rb_winscp.TabIndex = 3;
-            this.rb_winscp.TabStop = true;
-            this.rb_winscp.Text = "WinSCP (SFTP)";
-            this.rb_winscp.UseVisualStyleBackColor = true;
-            // 
-            // rb_filezilla
-            // 
-            this.rb_filezilla.AutoSize = true;
-            this.rb_filezilla.Depth = 0;
-            this.rb_filezilla.Location = new System.Drawing.Point(210, 96);
-            this.rb_filezilla.Margin = new System.Windows.Forms.Padding(0);
-            this.rb_filezilla.MouseLocation = new System.Drawing.Point(-1, -1);
-            this.rb_filezilla.MouseState = MaterialSkin.MouseState.HOVER;
-            this.rb_filezilla.Name = "rb_filezilla";
-            this.rb_filezilla.Ripple = true;
-            this.rb_filezilla.Size = new System.Drawing.Size(133, 37);
-            this.rb_filezilla.TabIndex = 4;
-            this.rb_filezilla.TabStop = true;
-            this.rb_filezilla.Text = "Filezilla (FTP)";
-            this.rb_filezilla.UseVisualStyleBackColor = true;
-            // 
-            // rb_heidi
-            // 
-            this.rb_heidi.AutoSize = true;
-            this.rb_heidi.Depth = 0;
-            this.rb_heidi.Location = new System.Drawing.Point(526, 96);
-            this.rb_heidi.Margin = new System.Windows.Forms.Padding(0);
-            this.rb_heidi.MouseLocation = new System.Drawing.Point(-1, -1);
-            this.rb_heidi.MouseState = MaterialSkin.MouseState.HOVER;
-            this.rb_heidi.Name = "rb_heidi";
-            this.rb_heidi.Ripple = true;
-            this.rb_heidi.Size = new System.Drawing.Size(101, 37);
-            this.rb_heidi.TabIndex = 5;
-            this.rb_heidi.TabStop = true;
-            this.rb_heidi.Text = "HeidiSQL";
-            this.rb_heidi.UseVisualStyleBackColor = true;
-            // 
-            // btn_edit
-            // 
-            this.btn_edit.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.btn_edit.Depth = 0;
-            this.btn_edit.DrawShadows = true;
-            this.btn_edit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_edit.HighEmphasis = true;
-            this.btn_edit.Icon = null;
-            this.btn_edit.Location = new System.Drawing.Point(555, 139);
-            this.btn_edit.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
-            this.btn_edit.MouseState = MaterialSkin.MouseState.HOVER;
-            this.btn_edit.Name = "btn_edit";
-            this.btn_edit.Size = new System.Drawing.Size(53, 36);
-            this.btn_edit.TabIndex = 17;
-            this.btn_edit.Text = "Edit";
-            this.btn_edit.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Text;
-            this.btn_edit.UseAccentColor = false;
-            this.btn_edit.UseVisualStyleBackColor = true;
-            // 
-            // btn_open
-            // 
-            this.btn_open.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.btn_open.Depth = 0;
-            this.btn_open.DrawShadows = true;
-            this.btn_open.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_open.HighEmphasis = true;
-            this.btn_open.Icon = null;
-            this.btn_open.Location = new System.Drawing.Point(630, 139);
-            this.btn_open.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
-            this.btn_open.MouseState = MaterialSkin.MouseState.HOVER;
-            this.btn_open.Name = "btn_open";
-            this.btn_open.Size = new System.Drawing.Size(60, 36);
-            this.btn_open.TabIndex = 16;
-            this.btn_open.Text = "Open";
-            this.btn_open.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
-            this.btn_open.UseAccentColor = false;
-            this.btn_open.UseVisualStyleBackColor = true;
-            // 
-            // btn_delete
-            // 
-            this.btn_delete.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.btn_delete.Depth = 0;
-            this.btn_delete.DrawShadows = true;
-            this.btn_delete.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_delete.HighEmphasis = true;
-            this.btn_delete.Icon = null;
-            this.btn_delete.Location = new System.Drawing.Point(460, 139);
-            this.btn_delete.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
-            this.btn_delete.MouseState = MaterialSkin.MouseState.HOVER;
-            this.btn_delete.Name = "btn_delete";
-            this.btn_delete.Size = new System.Drawing.Size(73, 36);
-            this.btn_delete.TabIndex = 18;
-            this.btn_delete.Text = "Delete";
-            this.btn_delete.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Text;
-            this.btn_delete.UseAccentColor = false;
-            this.btn_delete.UseVisualStyleBackColor = true;
-            // 
-            // materialCard2
-            // 
-            this.materialCard2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.materialCard2.Controls.Add(this.chk_mysql);
-            this.materialCard2.Controls.Add(this.chk_sftp);
-            this.materialCard2.Controls.Add(this.chk_ftp);
-            this.materialCard2.Controls.Add(this.chk_ssh);
-            this.materialCard2.Controls.Add(this.chk_revealPassword);
-            this.materialCard2.Controls.Add(this.txt_pass);
-            this.materialCard2.Controls.Add(this.txt_port);
-            this.materialCard2.Controls.Add(this.txt_user);
-            this.materialCard2.Controls.Add(this.txt_name);
-            this.materialCard2.Controls.Add(this.btn_clear);
-            this.materialCard2.Controls.Add(this.btn_add_update);
-            this.materialCard2.Depth = 0;
-            this.materialCard2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.materialCard2.Location = new System.Drawing.Point(19, 212);
-            this.materialCard2.Margin = new System.Windows.Forms.Padding(14);
-            this.materialCard2.MouseState = MaterialSkin.MouseState.HOVER;
-            this.materialCard2.Name = "materialCard2";
-            this.materialCard2.Padding = new System.Windows.Forms.Padding(14);
-            this.materialCard2.Size = new System.Drawing.Size(708, 312);
-            this.materialCard2.TabIndex = 19;
-            // 
-            // btn_clear
-            // 
-            this.btn_clear.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.btn_clear.Depth = 0;
-            this.btn_clear.DrawShadows = true;
-            this.btn_clear.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_clear.HighEmphasis = true;
-            this.btn_clear.Icon = null;
-            this.btn_clear.Location = new System.Drawing.Point(565, 265);
-            this.btn_clear.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
-            this.btn_clear.MouseState = MaterialSkin.MouseState.HOVER;
-            this.btn_clear.Name = "btn_clear";
-            this.btn_clear.Size = new System.Drawing.Size(66, 36);
-            this.btn_clear.TabIndex = 19;
-            this.btn_clear.Text = "Clear";
-            this.btn_clear.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Text;
-            this.btn_clear.UseAccentColor = false;
-            this.btn_clear.UseVisualStyleBackColor = true;
-            // 
-            // btn_add_update
-            // 
-            this.btn_add_update.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.btn_add_update.Depth = 0;
-            this.btn_add_update.DrawShadows = true;
-            this.btn_add_update.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_add_update.HighEmphasis = true;
-            this.btn_add_update.Icon = null;
-            this.btn_add_update.Location = new System.Drawing.Point(640, 265);
-            this.btn_add_update.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
-            this.btn_add_update.MouseState = MaterialSkin.MouseState.HOVER;
-            this.btn_add_update.Name = "btn_add_update";
-            this.btn_add_update.Size = new System.Drawing.Size(50, 36);
-            this.btn_add_update.TabIndex = 18;
-            this.btn_add_update.Text = "Add";
-            this.btn_add_update.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
-            this.btn_add_update.UseAccentColor = false;
-            this.btn_add_update.UseVisualStyleBackColor = true;
-            // 
-            // txt_name
-            // 
-            this.txt_name.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txt_name.Depth = 0;
-            this.txt_name.Font = new System.Drawing.Font("Roboto", 12F);
-            this.txt_name.Hint = "Account Name";
-            this.txt_name.Location = new System.Drawing.Point(54, 26);
-            this.txt_name.MaxLength = 50;
-            this.txt_name.MouseState = MaterialSkin.MouseState.OUT;
-            this.txt_name.Multiline = false;
-            this.txt_name.Name = "txt_name";
-            this.txt_name.Size = new System.Drawing.Size(602, 50);
-            this.txt_name.TabIndex = 20;
-            this.txt_name.Text = "";
-            // 
-            // txt_user
-            // 
-            this.txt_user.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txt_user.Depth = 0;
-            this.txt_user.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.txt_user.Hint = "User";
-            this.txt_user.Location = new System.Drawing.Point(53, 87);
-            this.txt_user.MaxLength = 50;
-            this.txt_user.MouseState = MaterialSkin.MouseState.OUT;
-            this.txt_user.Multiline = false;
-            this.txt_user.Name = "txt_user";
-            this.txt_user.Size = new System.Drawing.Size(422, 50);
-            this.txt_user.TabIndex = 21;
-            this.txt_user.Text = "";
-            // 
-            // txt_port
-            // 
-            this.txt_port.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txt_port.Depth = 0;
-            this.txt_port.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.txt_port.Hint = "Port";
-            this.txt_port.Location = new System.Drawing.Point(492, 87);
-            this.txt_port.MaxLength = 50;
-            this.txt_port.MouseState = MaterialSkin.MouseState.OUT;
-            this.txt_port.Multiline = false;
-            this.txt_port.Name = "txt_port";
-            this.txt_port.Size = new System.Drawing.Size(164, 50);
-            this.txt_port.TabIndex = 22;
-            this.txt_port.Text = "";
-            // 
-            // txt_pass
-            // 
-            this.txt_pass.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txt_pass.Depth = 0;
-            this.txt_pass.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.txt_pass.Hint = "Password";
-            this.txt_pass.Location = new System.Drawing.Point(54, 153);
-            this.txt_pass.MaxLength = 50;
-            this.txt_pass.MouseState = MaterialSkin.MouseState.OUT;
-            this.txt_pass.Multiline = false;
-            this.txt_pass.Name = "txt_pass";
-            this.txt_pass.Size = new System.Drawing.Size(421, 50);
-            this.txt_pass.TabIndex = 23;
-            this.txt_pass.Text = "";
-            // 
-            // chk_revealPassword
-            // 
-            this.chk_revealPassword.AutoSize = true;
-            this.chk_revealPassword.Depth = 0;
-            this.chk_revealPassword.Location = new System.Drawing.Point(492, 155);
-            this.chk_revealPassword.Margin = new System.Windows.Forms.Padding(0);
-            this.chk_revealPassword.MouseLocation = new System.Drawing.Point(-1, -1);
-            this.chk_revealPassword.MouseState = MaterialSkin.MouseState.HOVER;
-            this.chk_revealPassword.Name = "chk_revealPassword";
-            this.chk_revealPassword.Ripple = true;
-            this.chk_revealPassword.Size = new System.Drawing.Size(156, 37);
-            this.chk_revealPassword.TabIndex = 24;
-            this.chk_revealPassword.Text = "Reveal Password";
-            this.chk_revealPassword.UseVisualStyleBackColor = true;
-            // 
-            // chk_ssh
-            // 
-            this.chk_ssh.AutoSize = true;
-            this.chk_ssh.Depth = 0;
-            this.chk_ssh.Location = new System.Drawing.Point(54, 208);
-            this.chk_ssh.Margin = new System.Windows.Forms.Padding(0);
-            this.chk_ssh.MouseLocation = new System.Drawing.Point(-1, -1);
-            this.chk_ssh.MouseState = MaterialSkin.MouseState.HOVER;
-            this.chk_ssh.Name = "chk_ssh";
-            this.chk_ssh.Ripple = true;
-            this.chk_ssh.Size = new System.Drawing.Size(118, 37);
-            this.chk_ssh.TabIndex = 25;
-            this.chk_ssh.Text = "Putty (SSH)";
-            this.chk_ssh.UseVisualStyleBackColor = true;
-            // 
-            // chk_ftp
-            // 
-            this.chk_ftp.AutoSize = true;
-            this.chk_ftp.Depth = 0;
-            this.chk_ftp.Location = new System.Drawing.Point(181, 208);
-            this.chk_ftp.Margin = new System.Windows.Forms.Padding(0);
-            this.chk_ftp.MouseLocation = new System.Drawing.Point(-1, -1);
-            this.chk_ftp.MouseState = MaterialSkin.MouseState.HOVER;
-            this.chk_ftp.Name = "chk_ftp";
-            this.chk_ftp.Ripple = true;
-            this.chk_ftp.Size = new System.Drawing.Size(133, 37);
-            this.chk_ftp.TabIndex = 26;
-            this.chk_ftp.Text = "Filezilla (FTP)";
-            this.chk_ftp.UseVisualStyleBackColor = true;
-            // 
-            // chk_sftp
-            // 
-            this.chk_sftp.AutoSize = true;
-            this.chk_sftp.Depth = 0;
-            this.chk_sftp.Location = new System.Drawing.Point(324, 208);
-            this.chk_sftp.Margin = new System.Windows.Forms.Padding(0);
-            this.chk_sftp.MouseLocation = new System.Drawing.Point(-1, -1);
-            this.chk_sftp.MouseState = MaterialSkin.MouseState.HOVER;
-            this.chk_sftp.Name = "chk_sftp";
-            this.chk_sftp.Ripple = true;
-            this.chk_sftp.Size = new System.Drawing.Size(146, 37);
-            this.chk_sftp.TabIndex = 27;
-            this.chk_sftp.Text = "WinSCP (SFTP)";
-            this.chk_sftp.UseVisualStyleBackColor = true;
-            // 
-            // chk_mysql
-            // 
-            this.chk_mysql.AutoSize = true;
-            this.chk_mysql.Depth = 0;
-            this.chk_mysql.Location = new System.Drawing.Point(481, 208);
-            this.chk_mysql.Margin = new System.Windows.Forms.Padding(0);
-            this.chk_mysql.MouseLocation = new System.Drawing.Point(-1, -1);
-            this.chk_mysql.MouseState = MaterialSkin.MouseState.HOVER;
-            this.chk_mysql.Name = "chk_mysql";
-            this.chk_mysql.Ripple = true;
-            this.chk_mysql.Size = new System.Drawing.Size(168, 37);
-            this.chk_mysql.TabIndex = 28;
-            this.chk_mysql.Text = "HeidiSQL (MySQL)";
-            this.chk_mysql.UseVisualStyleBackColor = true;
+            this.ofd_searchApps.FileName = "openFileDialog1";
             // 
             // MainForm
             // 
@@ -867,14 +893,15 @@ namespace FileProtecter
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Utility Launcher";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
             this.materialTabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
-            this.tabPage2.ResumeLayout(false);
-            this.tabPage2.PerformLayout();
-            this.materialCard1.ResumeLayout(false);
-            this.materialCard1.PerformLayout();
             this.materialCard2.ResumeLayout(false);
             this.materialCard2.PerformLayout();
+            this.materialCard1.ResumeLayout(false);
+            this.materialCard1.PerformLayout();
+            this.tabPage2.ResumeLayout(false);
+            this.tabPage2.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -928,5 +955,7 @@ namespace FileProtecter
         private MaterialSkin.Controls.MaterialCheckbox chk_sftp;
         private MaterialSkin.Controls.MaterialCheckbox chk_ftp;
         private MaterialSkin.Controls.MaterialCheckbox chk_ssh;
+        private MaterialSkin.Controls.MaterialLabel materialLabel1;
+        private System.Windows.Forms.OpenFileDialog ofd_searchApps;
     }
 }
