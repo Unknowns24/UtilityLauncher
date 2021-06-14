@@ -35,6 +35,9 @@ namespace UtilityLauncher
             this.materialTabControl1 = new MaterialSkin.Controls.MaterialTabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.materialCard2 = new MaterialSkin.Controls.MaterialCard();
+            this.txt_host = new MaterialSkin.Controls.MaterialTextBox();
+            this.chk_editing = new MaterialSkin.Controls.MaterialCheckbox();
+            this.btn_swithPass = new MaterialSkin.Controls.MaterialButton();
             this.chk_mysql = new MaterialSkin.Controls.MaterialCheckbox();
             this.chk_sftp = new MaterialSkin.Controls.MaterialCheckbox();
             this.chk_ftp = new MaterialSkin.Controls.MaterialCheckbox();
@@ -45,6 +48,7 @@ namespace UtilityLauncher
             this.btn_clear = new MaterialSkin.Controls.MaterialButton();
             this.btn_add_update = new MaterialSkin.Controls.MaterialButton();
             this.materialCard1 = new MaterialSkin.Controls.MaterialCard();
+            this.txt_port = new MaterialSkin.Controls.MaterialTextBox();
             this.btn_delete = new MaterialSkin.Controls.MaterialButton();
             this.btn_edit = new MaterialSkin.Controls.MaterialButton();
             this.btn_open = new MaterialSkin.Controls.MaterialButton();
@@ -78,10 +82,6 @@ namespace UtilityLauncher
             this.txt_filezillaPath = new MaterialSkin.Controls.MaterialTextBox();
             this.img_list_icons = new System.Windows.Forms.ImageList(this.components);
             this.ofd_searchApps = new System.Windows.Forms.OpenFileDialog();
-            this.btn_swithPass = new MaterialSkin.Controls.MaterialButton();
-            this.chk_editing = new MaterialSkin.Controls.MaterialCheckbox();
-            this.txt_host = new MaterialSkin.Controls.MaterialTextBox();
-            this.txt_port = new MaterialSkin.Controls.MaterialTextBox();
             this.materialTabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.materialCard2.SuspendLayout();
@@ -149,6 +149,55 @@ namespace UtilityLauncher
             this.materialCard2.Padding = new System.Windows.Forms.Padding(14);
             this.materialCard2.Size = new System.Drawing.Size(708, 312);
             this.materialCard2.TabIndex = 19;
+            // 
+            // txt_host
+            // 
+            this.txt_host.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txt_host.Depth = 0;
+            this.txt_host.Font = new System.Drawing.Font("Roboto", 12F);
+            this.txt_host.Hint = "Host";
+            this.txt_host.Location = new System.Drawing.Point(361, 87);
+            this.txt_host.MaxLength = 50;
+            this.txt_host.MouseState = MaterialSkin.MouseState.OUT;
+            this.txt_host.Multiline = false;
+            this.txt_host.Name = "txt_host";
+            this.txt_host.Size = new System.Drawing.Size(295, 50);
+            this.txt_host.TabIndex = 31;
+            this.txt_host.Text = "";
+            // 
+            // chk_editing
+            // 
+            this.chk_editing.AutoSize = true;
+            this.chk_editing.Depth = 0;
+            this.chk_editing.Enabled = false;
+            this.chk_editing.Location = new System.Drawing.Point(53, 261);
+            this.chk_editing.Margin = new System.Windows.Forms.Padding(0);
+            this.chk_editing.MouseLocation = new System.Drawing.Point(-1, -1);
+            this.chk_editing.MouseState = MaterialSkin.MouseState.HOVER;
+            this.chk_editing.Name = "chk_editing";
+            this.chk_editing.Ripple = true;
+            this.chk_editing.Size = new System.Drawing.Size(35, 37);
+            this.chk_editing.TabIndex = 30;
+            this.chk_editing.UseVisualStyleBackColor = true;
+            // 
+            // btn_swithPass
+            // 
+            this.btn_swithPass.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.btn_swithPass.Depth = 0;
+            this.btn_swithPass.DrawShadows = true;
+            this.btn_swithPass.HighEmphasis = true;
+            this.btn_swithPass.Icon = null;
+            this.btn_swithPass.Location = new System.Drawing.Point(492, 160);
+            this.btn_swithPass.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.btn_swithPass.MouseState = MaterialSkin.MouseState.HOVER;
+            this.btn_swithPass.Name = "btn_swithPass";
+            this.btn_swithPass.Size = new System.Drawing.Size(157, 36);
+            this.btn_swithPass.TabIndex = 29;
+            this.btn_swithPass.Text = "Reveal Password";
+            this.btn_swithPass.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Outlined;
+            this.btn_swithPass.UseAccentColor = false;
+            this.btn_swithPass.UseVisualStyleBackColor = true;
+            this.btn_swithPass.Click += new System.EventHandler(this.btn_swithPass_Click);
             // 
             // chk_mysql
             // 
@@ -318,6 +367,21 @@ namespace UtilityLauncher
             this.materialCard1.Size = new System.Drawing.Size(708, 185);
             this.materialCard1.TabIndex = 1;
             // 
+            // txt_port
+            // 
+            this.txt_port.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txt_port.Depth = 0;
+            this.txt_port.Font = new System.Drawing.Font("Roboto", 12F);
+            this.txt_port.Hint = "Port";
+            this.txt_port.Location = new System.Drawing.Point(565, 39);
+            this.txt_port.MaxLength = 50;
+            this.txt_port.MouseState = MaterialSkin.MouseState.OUT;
+            this.txt_port.Multiline = false;
+            this.txt_port.Name = "txt_port";
+            this.txt_port.Size = new System.Drawing.Size(94, 50);
+            this.txt_port.TabIndex = 32;
+            this.txt_port.Text = "";
+            // 
             // btn_delete
             // 
             this.btn_delete.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
@@ -336,6 +400,7 @@ namespace UtilityLauncher
             this.btn_delete.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Text;
             this.btn_delete.UseAccentColor = false;
             this.btn_delete.UseVisualStyleBackColor = true;
+            this.btn_delete.Click += new System.EventHandler(this.btn_delete_Click);
             // 
             // btn_edit
             // 
@@ -861,70 +926,6 @@ namespace UtilityLauncher
             // ofd_searchApps
             // 
             this.ofd_searchApps.FileName = "openFileDialog1";
-            // 
-            // btn_swithPass
-            // 
-            this.btn_swithPass.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.btn_swithPass.Depth = 0;
-            this.btn_swithPass.DrawShadows = true;
-            this.btn_swithPass.HighEmphasis = true;
-            this.btn_swithPass.Icon = null;
-            this.btn_swithPass.Location = new System.Drawing.Point(492, 160);
-            this.btn_swithPass.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
-            this.btn_swithPass.MouseState = MaterialSkin.MouseState.HOVER;
-            this.btn_swithPass.Name = "btn_swithPass";
-            this.btn_swithPass.Size = new System.Drawing.Size(157, 36);
-            this.btn_swithPass.TabIndex = 29;
-            this.btn_swithPass.Text = "Reveal Password";
-            this.btn_swithPass.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Outlined;
-            this.btn_swithPass.UseAccentColor = false;
-            this.btn_swithPass.UseVisualStyleBackColor = true;
-            this.btn_swithPass.Click += new System.EventHandler(this.btn_swithPass_Click);
-            // 
-            // chk_editing
-            // 
-            this.chk_editing.AutoSize = true;
-            this.chk_editing.Depth = 0;
-            this.chk_editing.Enabled = false;
-            this.chk_editing.Location = new System.Drawing.Point(53, 261);
-            this.chk_editing.Margin = new System.Windows.Forms.Padding(0);
-            this.chk_editing.MouseLocation = new System.Drawing.Point(-1, -1);
-            this.chk_editing.MouseState = MaterialSkin.MouseState.HOVER;
-            this.chk_editing.Name = "chk_editing";
-            this.chk_editing.Ripple = true;
-            this.chk_editing.Size = new System.Drawing.Size(35, 37);
-            this.chk_editing.TabIndex = 30;
-            this.chk_editing.UseVisualStyleBackColor = true;
-            // 
-            // txt_host
-            // 
-            this.txt_host.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txt_host.Depth = 0;
-            this.txt_host.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.txt_host.Hint = "Host";
-            this.txt_host.Location = new System.Drawing.Point(361, 87);
-            this.txt_host.MaxLength = 50;
-            this.txt_host.MouseState = MaterialSkin.MouseState.OUT;
-            this.txt_host.Multiline = false;
-            this.txt_host.Name = "txt_host";
-            this.txt_host.Size = new System.Drawing.Size(295, 50);
-            this.txt_host.TabIndex = 31;
-            this.txt_host.Text = "";
-            // 
-            // txt_port
-            // 
-            this.txt_port.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txt_port.Depth = 0;
-            this.txt_port.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.txt_port.Hint = "Port";
-            this.txt_port.Location = new System.Drawing.Point(565, 39);
-            this.txt_port.MaxLength = 50;
-            this.txt_port.MouseState = MaterialSkin.MouseState.OUT;
-            this.txt_port.Multiline = false;
-            this.txt_port.Name = "txt_port";
-            this.txt_port.Size = new System.Drawing.Size(94, 50);
-            this.txt_port.TabIndex = 32;
-            this.txt_port.Text = "";
             // 
             // MainForm
             // 

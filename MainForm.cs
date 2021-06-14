@@ -708,9 +708,15 @@ namespace UtilityLauncher
 
         private void btn_add_update_Click(object sender, EventArgs e)
         {
-            if (txt_host.Text.Replace(" ", "") == "" || txt_name.Text.Replace(" ", "") == "" || txt_user.Text.Replace(" ", "") == "" || txt_pass.Text.Replace(" ", "") == "")
+            if (txt_host.Text.Replace(" ", "") == "" || txt_name.Text.Replace(" ", "") == "" || txt_user.Text.Replace(" ", "") == "")
             {
                 MessageBox.Show("There are empty fields, Please complete all fields", "Empty fields", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            if (chk_ssh.Checked == false && chk_ftp.Checked == false && chk_sftp.Checked == false && chk_mysql.Checked == false)
+            {
+                MessageBox.Show("You need to select the available connect methods for this new account", "No methods selected", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
@@ -877,6 +883,32 @@ namespace UtilityLauncher
             });
 
             OpenThread.Start();
+        }
+
+        private void btn_delete_Click(object sender, EventArgs e)
+        {
+            if (comb_accounts.SelectedItem.ToString() == "Select an account")
+            {
+                return;
+            }
+
+            DialogResult res = MessageBox.Show($"Do you want to delete the account: \"{thisAccount.name}\"", "Delete account!", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+            if (res == DialogResult.Yes)
+            {
+                comb_accounts.Items.Remove(thisAccount.name);
+
+                if(File.Exists(thisAccount.path))
+                {
+                    File.Delete(thisAccount.path);
+                }
+
+                accounts.Remove(thisAccount);
+
+                thisAccount = null;
+
+                comb_accounts.SelectedItem = "Select an account";
+            }
         }
     }
 
