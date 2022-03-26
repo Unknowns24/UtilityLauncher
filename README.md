@@ -4,3 +4,5 @@ This application is based on creation of server manager, with only put your cred
 ## Installation 
 You need to open the .sln file in your visual studio and compile the program then you can find an .exe file in solution folder
 
+## License 
+This project is under a MIT license
