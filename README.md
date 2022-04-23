@@ -6,3 +6,6 @@ You need to open the .sln file in your visual studio and compile the program the
 
 ## License 
 This project is under a MIT license
+
+### Author acknowledgment
+This repository was based on a [SERBice's](https://github.com/SERBice) original Utility launcher
