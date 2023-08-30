@@ -37,11 +37,11 @@ This project is licensed under the [MIT License](LICENSE).
 ## Contributions
 
 Contributions are welcome! If you find a bug or have an enhancement in mind, please create an issue or submit a pull request.
-This repository was based on a [SERBice's](https://github.com/SERBice) original Utility launcher
 
 ## Acknowledgments
 
 Special thanks to the MaterialSkin library for providing the sleek Material Design-themed UI.
+This repository was based on a [SERBice's](https://github.com/SERBice) original Utility launcher
 
 ## Disclaimer
 
