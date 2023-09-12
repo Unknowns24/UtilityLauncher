@@ -26,23 +26,29 @@ Utility Launcher is a C# application designed to manage and launch various appli
 4. Edit or delete existing accounts as needed.
 5. Configure application paths and settings in the settings section.
 
-## Dependencies
+## Screenshots
 
--   MaterialSkin library for UI theming.
+![UtilityLauncherImage](https://i.imgur.com/Lk0PsxK.png)
 
-## License
+### Prerequisites
+
+Before running FileProtecter, make sure you have the following installed:
+
+-   [.NET Framework](https://dotnet.microsoft.com/download/dotnet-framework) - The application is built using .NET Framework.
+
+### License
 
 This project is licensed under the [MIT License](LICENSE).
 
-## Contributions
+### Contributions
 
 Contributions are welcome! If you find a bug or have an enhancement in mind, please create an issue or submit a pull request.
 
-## Acknowledgments
+### Acknowledgments
 
 Special thanks to the MaterialSkin library for providing the sleek Material Design-themed UI.
-This repository was based on a [SERBice's](https://github.com/SERBice) original Utility launcher
+This repository was based on a [SERBice's](https://github.com/SERBice) idea
 
-## Disclaimer
+#### Disclaimer
 
 This project is provided as-is. Use it responsibly and at your own risk.
